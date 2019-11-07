@@ -182,6 +182,13 @@ export default {
     }
   }
 }
+@media only screen and (min-width: 1921px) {
+  .account_layout {
+    .tp_home {
+      max-width: 1440px;
+    }
+  }
+}
 @media only screen and (min-width: 1350px) and (max-width: 1680px) {
   .account_layout {
     .desc_lay {

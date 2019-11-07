@@ -6,29 +6,105 @@
       <span @click="$router.push({path: 'login'})">Sign in.</span>
     </div>
     <div class="center_box">
-      <div class="acc_bx">
+      <div class="acc_bx" v-if="!isQrcode">
         <div class="input_area">
-          <input placeholder="Please enter name" />
+          <input placeholder="Create a new account" v-model="accountName" />
         </div>
-        <div class="btn">Next</div>
+        <div class="btn" @click="sendName">Next</div>
       </div>
       <div class="qrcode" v-if="isQrcode">
-        <img src alt />
+        <img :src="url" alt />
       </div>
     </div>
 
     <div class="download">
-      <span class="link">Download Authenticator App</span>
+      <span class="link" @click="$utils.openLink(applink)">Download Authenticator App</span>
     </div>
   </div>
 </template>
 <script>
+import * as Storage from '@/utils/auth'
 export default {
-    data() {
-        return {
-            isQrcode: false
+  data() {
+    return {
+      isQrcode: false,
+      applink: 'https://authenticator.ont.io/',
+      accountName: '',
+      url: '',
+      dataId: '',
+      checkTimer: null,
+    }
+  },
+  methods: {
+    async sendName() {
+      if (this.accountName === '') {
+        this.$message.error('Please Input Yours Account Name!')
+        return false
+      }
+      try {
+        this.isDisable = true
+        let params = {
+          userName: this.accountName
         }
+        let res = await this.$http.Account.postRegister(params)
+        console.log('res', res)
+        // return
+        if (res.desc === 'SUCCESS') {
+          let qrcodeParams = res.result.qrcode
+          this.dataId = res.result.appId
+          this.isQrcode = true
+          this.url = await this.$utils.createQRcode(qrcodeParams)
+          clearInterval(this.checkTimer)
+          this.checkTimer = setInterval(() => {
+            this.checkResult()
+          }, 3000)
+        } else {
+          this.$message.error(res.desc)
+          return
+        }
+      } catch (error) {
+        throw error
+      }
     },
+    async checkResult() {
+      try {
+        let res = await this.$http.Account.checkRegister(this.dataId)
+        // console.log('checkout', res)
+        if (res.desc === 'SUCCESS') {
+          if (res.result.result === '1') {
+            this.$message.success('Sign Up Success!')
+            clearInterval(this.checkTimer)
+            Storage.setToken(res.result.token)
+            Storage.setNews('ontid', res.result.ontid)
+            Storage.setNews('userName', res.result.userName)
+            this.$router.push({ path: '/' })
+            return true
+          } else if (res.result.result === '0') {
+            clearInterval(this.checkTimer)
+            this.$message.error('Sign Up Fail!')
+            return false
+          } else if (res.result.result === '2') {
+            clearInterval(this.checkTimer)
+            this.isQrcode = false
+            this.url = ''
+            this.$message.error('Already Registed!')
+            return false
+          } else { }
+        } else {
+          clearInterval(this.checkTimer)
+          this.$message.error('Sign Up Fail!')
+          return false
+        }
+      } catch (error) {
+        clearInterval(this.checkTimer)
+        this.$message.error(error)
+        return false
+      }
+    }
+  },
+  beforeDestroy() {
+    clearInterval(this.checkTimer)
+  }
 }
 </script>
 
@@ -96,7 +172,7 @@ export default {
           font-size: 14px;
           border-bottom: 1px solid #e4e4e4;
           font-weight: 400;
-          caret-color: #1684E6;
+          caret-color: #1684e6;
           &::-webkit-input-placeholder {
             /* WebKit, Blink, Edge */
             font-size: 16px;
