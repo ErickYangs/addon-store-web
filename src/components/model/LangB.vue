@@ -8,22 +8,18 @@
         "
     >
       <a class="ant-dropdown-link" href="#">
-        English
-        <!-- <a-icon type="down" /> -->
+        {{this.$i18n.locale | langStyle}}
       </a>
       <a-menu slot="overlay">
         <a-menu-item>
-          <span>中文</span>
-          <!-- <a href="javascript:;">中文</a> -->
+          <span @click="changeLang('ch')">中文</span>
         </a-menu-item>
         <a-menu-item>
-          <span>English</span>
-          <!-- <a href="javascript:;">English</a> -->
+          <span @click="changeLang('en')">English</span>
         </a-menu-item>
-        <a-menu-item>
-          <span>韩文</span>
-          <!-- <a href="javascript:;">韩文</a> -->
-        </a-menu-item>
+        <!-- <a-menu-item>
+          <span @click="changeLang('ko')">한국어</span>
+        </a-menu-item> -->
       </a-menu>
     </a-dropdown>
   </div>
@@ -31,7 +27,30 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      value: this.$i18n.locale
+    }
+  },
+  filters: {
+    langStyle: function (value) {
+      if (value === 'ch') {
+        return '中文'
+      } else if (value === 'ko') {
+        return '한국어'
+      } else {
+        return 'English'
+      }
+    }
+  },
+  methods: {
+    changeLang(lang) {
+      let self = this
+      self.$i18n.locale = lang
+      localStorage.setItem('user_lang', lang)
+      // self.$router.go(0)
+    }
+  }
 }
 </script>
 
@@ -43,17 +62,18 @@ export default {
     height: 26px;
     font-size: 16px;
     font-weight: 400;
+    text-align: center;
     color: rgba(23, 135, 235, 1);
     line-height: 26px;
     padding-left: 26px;
-    padding-right: 20px;
+    padding-right: 26px;
     position: relative;
     // border: 1px solid #000;
     &::before {
       content: "";
       width: 14px;
       height: 14px;
-      background: url(../../assets/images/lang_ball.png) no-repeat;
+      background: url(../../assets/images/lang_ball.svg) no-repeat;
       background-size: contain;
       position: absolute;
       left: 2px;
@@ -64,7 +84,8 @@ export default {
       content: "";
       width: 6px;
       height: 4px;
-      background: #000;
+      background: url(../../assets/images/lang_down.svg) no-repeat;
+      background-size: contain;
       position: absolute;
       right: 10px;
       top: 50%;

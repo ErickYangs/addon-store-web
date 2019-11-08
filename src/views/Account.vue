@@ -36,9 +36,16 @@
 
 <script>
 import langDiv from '../components/model/LangB'
+import { mapState } from 'vuex'
 export default {
   components: {
     langDiv
+  },
+  computed: {
+    ...mapState({
+      isShow: state => state.nav.isShowNav,
+      lang: state => state.lang.lang
+    })
   }
 }
 </script>
@@ -77,7 +84,7 @@ export default {
     .bg1 {
       width: 252px;
       height: 122px;
-      background: url(../assets/images/bg1.png) no-repeat;
+      background: url(../assets/images/bg1.svg) no-repeat;
       background-size: contain;
       position: absolute;
       top: -10px;
@@ -112,7 +119,7 @@ export default {
     .logo {
       width: 178px;
       height: 28px;
-      background: url(../assets/images/logo.png) no-repeat;
+      background: url(../assets/images/logo.svg) no-repeat;
       background-size: contain;
       cursor: pointer;
     }

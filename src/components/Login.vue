@@ -98,7 +98,7 @@ export default {
   .title {
     width: 108px;
     height: 49px;
-    background: url(../assets/images/login.png) no-repeat;
+    background: url(../assets/images/login.svg) no-repeat;
     background-size: contain;
   }
   .tips {
