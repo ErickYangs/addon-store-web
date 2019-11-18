@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="antLocal">
-    <div id="app" :class="'lang_'+classLang">
+    <div id="app" :class="'lang_' + classLang">
       <router-view />
     </div>
   </a-locale-provider>
@@ -13,9 +13,9 @@ import enUS from 'ant-design-vue/lib/locale-provider/en_US'
 export default {
   data() {
     return {
-      locale: zhCN,
+      locale: zhCN
       // classLang: 'en'
-    };
+    }
   },
   computed: {
     antLocal() {
@@ -23,10 +23,10 @@ export default {
       switch (this.$i18n.locale) {
         case 'ch':
           temp = zhCN
-          break;
+          break
         default:
           temp = enUS
-          break;
+          break
       }
       return temp
     },
@@ -35,10 +35,10 @@ export default {
       switch (this.$i18n.locale) {
         case 'ch':
           temp = 'ch'
-          break;
+          break
         default:
           temp = 'en'
-          break;
+          break
       }
       return temp
     }
@@ -47,4 +47,34 @@ export default {
 </script>
 
 <style lang="less">
+/deep/ .ant-menu-submenu.ant-menu-submenu-popup {
+  left: 60px !important;
+}
+.ant-menu-dark .ant-menu-sub {
+  background: #fff !important;
+  overflow: hidden;
+  .ant-menu-item {
+    color: #000;
+    margin: 0 !important;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-family: 'PingFangSC-Regular', 'Arial', '黑体', sans-serif;
+    &:hover {
+      color: #fff;
+      background: #0076df;
+    }
+  }
+  .ant-menu-item.ant-menu-item-selected {
+    color: #fff;
+  }
+}
+.ant-tooltip-content {
+  .ant-tooltip-inner {
+    span {
+      color: #fff !important;
+      font-family: 'PingFangSC-Regular', 'Arial', '黑体', sans-serif;
+    }
+  }
+}
 </style>

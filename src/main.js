@@ -15,6 +15,7 @@ import 'normalize.css/normalize.css'
 import '@/styles/index.less'
 
 import {
+  Avatar,
   Button,
   Input,
   InputNumber,
@@ -23,9 +24,11 @@ import {
   Menu,
   message,
   LocaleProvider,
-  ConfigProvider
+  ConfigProvider,
+  Layout
 } from 'ant-design-vue'
 Vue.prototype.$message = message
+Vue.use(Avatar)
 Vue.use(Button)
 Vue.use(Input)
 Vue.use(InputNumber)
@@ -34,6 +37,8 @@ Vue.use(Icon)
 Vue.use(Menu)
 Vue.use(LocaleProvider)
 Vue.use(ConfigProvider)
+Vue.use(Layout)
+
 
 
 // http api
@@ -59,8 +64,6 @@ switch (yuyan) {
   default:
     yuyans = 'en'
 }
-console.log('yuyans', yuyans)
-console.log(localStorage.getItem('user_lang'))
 const i18n = new VueI18n({
   locale: localStorage.getItem('user_lang') || yuyans,
   messages: {
