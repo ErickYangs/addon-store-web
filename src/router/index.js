@@ -13,8 +13,59 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    component: Home,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/components/dashboard/index'),
+        name: 'Dashboard'
+      }
+    ]
+  },
+  {
+    path: '/plugin',
+    component: Home,
+    redirect: '/plugin/index',
+    name: 'PluginLayout',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/components/plugin/index'),
+        name: 'Plugin'
+      },
+      {
+        path: 'edit',
+        component: () => import('@/components/plugin/edit'),
+        name: 'EditArticle',
+        meta: { title: 'Edit Article', noCache: true, activeMenu: 'Plugin' },
+      },
+      {
+        path: 'create',
+        component: () => import('@/components/plugin/create'),
+        name: 'CreateArticle',
+        meta: { title: 'Create Article', noCache: true, activeMenu: 'Plugin' },
+      }
+    ]
+  },
+  {
+    path: '/application',
+    component: Home,
+    redirect: '/application/index',
+    name: 'ApplicationLayout',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/components/application/index'),
+        name: 'Application'
+      },
+      {
+        path: 'createapp',
+        component: () => import('@/components/application/addApp'),
+        name: 'CreateApp',
+        meta: { title: 'Create Article', noCache: true, activeMenu: 'Application' },
+      }
+    ]
   },
   {
     path: '/account',
@@ -91,4 +142,8 @@ const router = new VueRouter({
 //     throw error
 //   }
 // })
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error => error)
+}
 export default router

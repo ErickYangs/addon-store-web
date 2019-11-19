@@ -25,7 +25,9 @@ import {
   message,
   LocaleProvider,
   ConfigProvider,
-  Layout
+  Layout,
+  Steps,
+  Table
 } from 'ant-design-vue'
 Vue.prototype.$message = message
 Vue.use(Avatar)
@@ -38,8 +40,8 @@ Vue.use(Menu)
 Vue.use(LocaleProvider)
 Vue.use(ConfigProvider)
 Vue.use(Layout)
-
-
+Vue.use(Steps)
+Vue.use(Table)
 
 // http api
 import http from '@/api'

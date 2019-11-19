@@ -7,41 +7,60 @@
         v-model="collapsed"
         width="160"
         collapsedWidth="60"
+        breakpoint="lg"
       >
         <div class="logo">
           <h2 v-if="!collapsed" class="logo_icon"></h2>
-          <i v-else class="logo_close" @click="() => (collapsed = !collapsed)"></i>
+          <i
+            v-else
+            class="logo_close"
+            @click="() => (collapsed = !collapsed)"
+          ></i>
         </div>
-        <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">
-          <a-menu-item key="1">
+        <a-menu
+          theme="dark"
+          mode="inline"
+          :defaultSelectedKeys="[currentKey]"
+          @click="handlerClick"
+          :openKeys.sync="openKeys"
+        >
+          <a-menu-item key="Dashboard">
             <div class="sub_wrap">
               <i class="all_icon"></i>
               <span>All</span>
             </div>
           </a-menu-item>
-          <a-sub-menu key="sub2">
+          <a-sub-menu key="ddxf">
             <span slot="title"
               ><i class="ddxf_icon"></i> <span>DDXF</span></span
             >
-            <a-menu-item key="6">
+            <a-menu-item key="Plugin">
               <span class="home_sun_title">插件库</span>
             </a-menu-item>
-            <a-menu-item key="8"><span>App库</span></a-menu-item>
+            <a-menu-item key="Application"><span>App库</span></a-menu-item>
           </a-sub-menu>
-          <a-menu-item key="3">
+          <!-- <a-menu-item key="3">
             <div class="sub_wrap">
               <i class="ddxf_icon"></i>
               <span>DDXF</span>
             </div>
-          </a-menu-item>
+          </a-menu-item> -->
         </a-menu>
         <div class="trigger">
-          <i class="menu_open" v-if="collapsed" @click="() => (collapsed = !collapsed)"></i>
-          <i class="menu_clsoe" v-else @click="() => (collapsed = !collapsed)"></i>
+          <i
+            class="menu_open"
+            v-if="collapsed"
+            @click="() => (collapsed = !collapsed)"
+          ></i>
+          <i
+            class="menu_clsoe"
+            v-else
+            @click="() => (collapsed = !collapsed)"
+          ></i>
         </div>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header style="background: #fff; padding: 0;">
           <div class="header_wrap">
             <div class="lang_wrap">
               <langw-div></langw-div>
@@ -53,13 +72,11 @@
         </a-layout-header>
         <a-layout-content
           :style="{
-            margin: '24px 16px',
-            padding: '24px',
             background: '#fff',
             minHeight: '280px'
           }"
         >
-          Content
+          <router-view></router-view>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -79,7 +96,56 @@ export default {
   },
   data() {
     return {
-      collapsed: false
+      collapsed: false,
+      openKeys: [],
+      ddxfArr: ['Plugin', 'Application']
+    }
+  },
+  methods: {
+    handlerClick(option) {
+      console.log(option)
+      this.$router.push({ name: option.key })
+    }
+  },
+  computed: {
+    currentKey: {
+      get() {
+        let route = this.$route
+        const { meta, name } = route
+        // if set path, the sidebar will highlight the path you set
+        if (meta.activeMenu) {
+          return meta.activeMenu
+        }
+        return name
+      },
+      set() {}
+    }
+  },
+  mounted() {
+    // let names = this.$route.name
+    // if (this.ddxfArr.includes(names)) {
+    //   this.openKeys = ['ddxf']
+    // }
+    // console.log('this.$route.', this.$route)
+    let current
+    let route = this.$route
+    const { meta, name } = route
+    // if set path, the sidebar will highlight the path you set
+    if (meta.activeMenu) {
+      current = meta.activeMenu
+    } else {
+      current = name
+    }
+    if (this.ddxfArr.includes(current)) {
+      this.openKeys = ['ddxf']
+    }
+    this.$nextTick(() => {
+      this.currentKey = 'Plugin'
+    })
+  },
+  watch: {
+    openKeys(val) {
+      console.log('openKeys', val)
     }
   }
 }
@@ -111,6 +177,9 @@ export default {
           height: 50px;
         }
       }
+    }
+    .ant-layout-content {
+      overflow-y: auto;
     }
     .ant-menu {
       li.ant-menu-item {
@@ -152,7 +221,7 @@ export default {
       li.ant-menu-item-active {
         .sub_wrap {
           background: #fff;
-          
+
           i.all_icon {
             background: url(../assets/images/all_b.svg) no-repeat !important;
             background-size: contain !important;
