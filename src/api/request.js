@@ -39,7 +39,7 @@ service.interceptors.response.use(
         message.error(rest.data.desc)
       }
     } else {
-      message.error('Api Error, Please Tyr Again')
+      message.error('Api Error, Please Try Again')
     }
     return Promise.reject(error)
   }

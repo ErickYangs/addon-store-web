@@ -6,7 +6,7 @@ import request from './request'
  */
 export function checkRegister(id) {
   return request({
-    url: '/api/v1/addon/register/result/' + id,
+    url: '/api/v1/account/register/result/' + id,
     method: 'get'
   })
 }
@@ -17,7 +17,7 @@ export function checkRegister(id) {
  */
 export function postRegister(data) {
   return request({
-    url: '/api/v1/addon/register',
+    url: '/api/v1/account/register',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function postRegister(data) {
 // Get the QR code parameter of the login
 export function getSignMsg() {
   return request({
-    url: '/api/v1/addon/login',
+    url: '/api/v1/account/login',
     method: 'post'
   })
 }
@@ -37,7 +37,7 @@ export function getSignMsg() {
  */
 export function checkSign(id) {
   return request({
-    url: '/api/v1/addon/login/result/' + id,
+    url: '/api/v1/account/login/result/' + id,
     method: 'get'
   })
 }

@@ -19,23 +19,23 @@
       <div class="addon_message">
         <div class="form_area">
           <div class="form_menu_item">
-            <div class="label_name">Application Name</div>
+            <div class="label_name">Add-on Name</div>
             <input
               v-model="appNews.appName"
               type="text"
-              placeholder="Please Input Application Name"
+              placeholder="Please Input Add-on Name"
             />
           </div>
           <div class="form_menu_item">
-            <div class="label_name">Application Description</div>
+            <div class="label_name">Add-on Description</div>
             <textarea
               v-model="appNews.appDesc"
-              placeholder="Please Input Application Description"
+              placeholder="Please Input Add-on Description"
             ></textarea>
           </div>
         </div>
         <div class="_btn_wrap">
-          <span class="hover6">Create</span>
+          <a-button @click="createAddon">Create</a-button>
         </div>
       </div>
       <div class="json_area"></div>
@@ -44,12 +44,44 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState({
+      account: state => state.login.account
+    })
+  },
   data() {
     return {
       appNews: {
         appName: '',
         appDesc: ''
+      }
+    }
+  },
+  methods: {
+    async createAddon() {
+      if (!this.appNews.appName) {
+        this.$message.error('Please Input Add-on Name!')
+        return false
+      }
+      let params = {
+        addonName: this.appNews.appName,
+        description: this.appNews.appDesc,
+        ontid: this.account.ontid
+      }
+      try {
+        let result = await this.$http.Addon.createCustomAdd(params)
+        // console.log('create custom add-on result', result)
+        if (result.desc !== 'SUCCESS' || result.result !== 'SUCCESS') {
+          this.$message.error('Create Add-on Fail, Please Try Again')
+          return false
+        }
+        this.$message.success('Create Add-on Success!')
+        this.$router.push({name: 'PluginLayout'})
+      } catch (error) {
+        this.$message.error('Create Add-on Fail!')
+        throw error
       }
     }
   }
@@ -227,7 +259,8 @@ export default {
     }
     ._btn_wrap {
       margin-top: 60px;
-      span {
+      button {
+        border: none;
         display: block;
         width: 120px;
         height: 40px;
@@ -244,7 +277,7 @@ export default {
         line-height: 40px;
         text-align: center;
         &:hover {
-            opacity: 0.8;
+          opacity: 0.8;
         }
       }
     }

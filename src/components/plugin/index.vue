@@ -37,7 +37,7 @@
         <div class="lib_title">Cydia</div>
         <div class="lib_wrap">
           <div
-            @click="$router.push({ name: 'EditArticle' })"
+            @click="$router.push({ name: 'AddonDetail', query: { id: item.id } })"
             class="lib_item hover6"
             v-for="(item, index) in commonAddonList"
             :key="index"
@@ -67,6 +67,7 @@
             <div class="lib_item_add_tips hover6">Add New Addon</div>
           </div>
           <div
+          @click="$router.push({name: 'EditArticle', query: { id: item.id }})"
             class="lib_item hover6"
             v-for="(item, index) in customAddonList"
             :key="index"

@@ -47,6 +47,12 @@ const routes = [
         component: () => import('@/components/plugin/create'),
         name: 'CreateArticle',
         meta: { title: 'Create Article', noCache: true, activeMenu: 'Plugin' }
+      },
+      {
+        path: 'addondetail',
+        component: () => import('@/components/plugin/AddonDetail'),
+        name: 'AddonDetail',
+        meta: { title: 'AddonDetail', noCache: true, activeMenu: 'Plugin' }
       }
     ]
   },
