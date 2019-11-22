@@ -1,0 +1,49 @@
+.table_body {
+  margin-bottom: 40px;
+}
+.table_body span.link_btn {
+  color: #1787eb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.table_body span.link_btn:hover {
+  opacity: 0.8;
+}
+.table_body /deep/ .ant-table-body .ant-checkbox-inner {
+  border-radius: 50%;
+}
+.table_body /deep/ .ant-table-body .ant-checkbox-checked .ant-checkbox-inner::after {
+  width: 8px;
+  height: 8px;
+  transform: none;
+  background: #1787eb;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: none;
+}
+.table_body /deep/ .ant-table-body .ant-checkbox-checked .ant-checkbox-inner {
+  background: #fff;
+}
+.table_body /deep/ .ant-table-body .ant-table-thead tr th div {
+  color: #1787eb;
+  font-size: 16px;
+  font-weight: 600;
+}
+.table_body .table_icon {
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.table_body i.edit_icon {
+  background: url(../assets/images/edit_b.svg) no-repeat center;
+}
+.table_body i.delete_icon {
+  background: url(../assets/images/delete_icon.svg) no-repeat center;
+}
+.table_body /deep/ .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+  background: #fafafa;
+}

@@ -47,6 +47,9 @@ export default {
 </script>
 
 <style lang="less">
+#nprogress .bar {
+  background: #1787eb !important; //自定义颜色
+}
 /deep/ .ant-menu-submenu.ant-menu-submenu-popup {
   left: 60px !important;
 }

@@ -3,9 +3,6 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>DDXF</span>
-        </div>
-        <div class="bread_item">
           <span>App</span>
         </div>
         <div class="bread_item">
@@ -127,8 +124,8 @@ export default {
   width: 100%;
   .breadcrumb {
     height: 42px;
-    border-bottom: 1px solid #efefef;
-    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #fafafa;
+    border-top: 1px solid #fafafa;
     display: flex;
     justify-content: flex-start;
     .bread_item {
@@ -162,7 +159,7 @@ export default {
         font-weight: 900;
         font-size: 38px;
         line-height: 46px;
-        color: rgba(23, 135, 235, 1);
+        color: @theme-color;
         margin-bottom: 10px;
       }
       .main_sub_desc {
@@ -185,7 +182,7 @@ export default {
       }
       .sun_title1 {
         font-size: 16px;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 24px;
         margin-bottom: 12px;
       }
@@ -196,9 +193,9 @@ export default {
         margin-bottom: 4px;
       }
       .sun_title3 {
-        font-size: 14px;
+        font-size: @14px;
         font-weight: 600;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 22px;
         margin-bottom: 6px;
       }
@@ -258,7 +255,7 @@ export default {
         background: url(../../assets/images/add_w.svg) no-repeat center;
       }
       &:hover {
-        background: #1787eb;
+        background: @theme-color;
         i.add_b {
           display: none;
         }
@@ -275,15 +272,15 @@ export default {
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
     line-height: 24px;
-    margin-bottom: 14px;
+    margin-bottom: @14px;
   }
   .link_body {
-    color: #1787eb;
+    color: @theme-color;
     .link_title {
       height: 28px;
       font-size: 20px;
       font-weight: 600;
-      color: rgba(23, 135, 235, 1);
+      color: @theme-color;
       line-height: 28px;
       margin-bottom: 20px;
     }
@@ -292,8 +289,8 @@ export default {
         display: block;
         width: 140px;
         height: 22px;
-        font-size: 14px;
-        color: rgba(23, 135, 235, 1);
+        font-size: @14px;
+        color: @theme-color;
         line-height: 22px;
         margin: 10px 0;
         text-decoration: underline;
@@ -328,7 +325,7 @@ export default {
   line-height: 40px;
   text-align: center;
   color: #fff;
-  font-size: 14px;
+  font-size: @14px;
   &:hover {
     opacity: 0.8;
   }
@@ -350,9 +347,9 @@ export default {
 }
 /deep/ .ant-steps-item-wait .ant-steps-item-icon {
   background: rgba(248, 250, 252, 1);
-  border-color: rgba(23, 135, 235, 1);
+  border-color: @theme-color;
   & > .ant-steps-icon {
-    color: rgba(23, 135, 235, 1);
+    color: @theme-color;
   }
 }
 </style>

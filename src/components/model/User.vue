@@ -18,7 +18,7 @@
           <span>Econ</span>
         </a-menu-item>
         <a-menu-item>
-          <span>Drop out</span>
+          <span @click="logOut">Drop out</span>
         </a-menu-item>
       </a-menu>
     </a-dropdown>
@@ -26,10 +26,19 @@
 </template>
 
 <script>
-export default {}
+import * as Storage from '@/utils/auth'
+
+export default {
+  methods: {
+    logOut() {
+      Storage.clear()
+      this.$router.push({ path: 'login' })
+    }
+  }
+}
 </script>
 
-<style lang="less" >
+<style lang="less">
 .user_wrap {
   width: 100%;
   height: 100%;
@@ -78,7 +87,7 @@ export default {}
           line-height: 45px;
           text-align: center;
           font-weight: 400;
-          color: rgba(0, 0, 0, 0.6);
+          color: @color6;
         }
       }
       li.ant-dropdown-menu-item:hover {

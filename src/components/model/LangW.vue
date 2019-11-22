@@ -103,7 +103,7 @@ export default {
           line-height: 45px;
           text-align: center;
           font-weight: 400;
-          color: rgba(0, 0, 0, 0.6);
+          color: @color6;
         }
       }
       li.ant-dropdown-menu-item:hover {

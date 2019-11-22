@@ -30,7 +30,12 @@ export function setToken(token) {
 export function setNews(name, data) {
   return storage.setItem(name, data)
 }
-
+export function getNews(name) {
+  return storage.getItem(name)
+}
+export function clear() {
+  return storage.clear()
+}
 export function removeToken() {
   return storage.removeItem(LoginKey)
 }

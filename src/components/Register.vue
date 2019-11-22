@@ -3,22 +3,24 @@
     <div class="title"></div>
     <div class="tips _tps_top">
       Already have Account.
-      <span @click="$router.push({path: 'login'})">Sign in.</span>
+      <span @click="$router.push({ path: 'login' })">Sign in.</span>
     </div>
     <div class="center_box">
       <div class="acc_bx" v-if="!isQrcode">
         <div class="input_area">
-          <input placeholder="Create a new account" v-model="accountName" />
+          <input @keyup.enter="sendName" placeholder="Create a new account" v-model="accountName" />
         </div>
         <div class="btn" @click="sendName">Next</div>
       </div>
-      <div class="qrcode" v-if="isQrcode">
+      <div class="qrcode" v-else>
         <img :src="url" alt />
       </div>
     </div>
 
     <div class="download">
-      <span class="link" @click="$utils.openLink(applink)">Download Authenticator App</span>
+      <span class="link" @click="$utils.openLink(applink)"
+        >Download Authenticator App</span
+      >
     </div>
   </div>
 </template>
@@ -32,12 +34,12 @@ export default {
       accountName: '',
       url: '',
       dataId: '',
-      checkTimer: null,
+      checkTimer: null
     }
   },
   methods: {
     async sendName() {
-      if (this.accountName === '') {
+      if (!this.accountName) {
         this.$message.error('Please Input Yours Account Name!')
         return false
       }
@@ -48,20 +50,18 @@ export default {
         }
         let res = await this.$http.Account.postRegister(params)
         console.log('res', res)
-        // return
-        if (res.desc === 'SUCCESS') {
-          let qrcodeParams = res.result.qrcode
-          this.dataId = res.result.appId
-          this.isQrcode = true
-          this.url = await this.$utils.createQRcode(qrcodeParams)
-          clearInterval(this.checkTimer)
-          this.checkTimer = setInterval(() => {
-            this.checkResult()
-          }, 3000)
-        } else {
+        if (res.desc !== 'SUCCESS') {
           this.$message.error(res.desc)
-          return
+          return false
         }
+        let qrcodeParams = res.result.qrcode
+        this.dataId = res.result.appId
+        this.isQrcode = true
+        this.url = await this.$utils.createQRcode(qrcodeParams)
+        clearInterval(this.checkTimer)
+        this.checkTimer = setInterval(() => {
+          this.checkResult()
+        }, 3000)
       } catch (error) {
         throw error
       }
@@ -70,30 +70,30 @@ export default {
       try {
         let res = await this.$http.Account.checkRegister(this.dataId)
         // console.log('checkout', res)
-        if (res.desc === 'SUCCESS') {
-          if (res.result.result === '1') {
-            this.$message.success('Sign Up Success!')
-            clearInterval(this.checkTimer)
-            Storage.setToken(res.result.token)
-            Storage.setNews('ontid', res.result.ontid)
-            Storage.setNews('userName', res.result.userName)
-            this.$router.push({ path: '/' })
-            return true
-          } else if (res.result.result === '0') {
-            clearInterval(this.checkTimer)
-            this.$message.error('Sign Up Fail!')
-            return false
-          } else if (res.result.result === '2') {
-            clearInterval(this.checkTimer)
-            this.isQrcode = false
-            this.url = ''
-            this.$message.error('Already Registed!')
-            return false
-          } else { }
-        } else {
+        if (res.desc !== 'SUCCESS') {
           clearInterval(this.checkTimer)
           this.$message.error('Sign Up Fail!')
           return false
+        }
+        if (res.result.result === '1') {
+          this.$message.success('Sign Up Success!')
+          clearInterval(this.checkTimer)
+          Storage.setToken(res.result.token)
+          Storage.setNews('ontid', res.result.ontid)
+          Storage.setNews('userName', res.result.userName)
+          this.$router.push({ path: '/' })
+          return true
+        } else if (res.result.result === '0') {
+          clearInterval(this.checkTimer)
+          this.$message.error('Sign Up Fail!')
+          return false
+        } else if (res.result.result === '2') {
+          clearInterval(this.checkTimer)
+          this.isQrcode = false
+          this.url = ''
+          this.$message.error('Already Registed!')
+          return false
+        } else {
         }
       } catch (error) {
         clearInterval(this.checkTimer)
@@ -122,14 +122,14 @@ export default {
     background-size: contain;
   }
   .tips {
-    font-size: 14px;
+    font-size: @14px;
     color: #636363;
     line-height: 16px;
   }
   ._tps_top {
     margin: 30px 0 40px;
     span {
-      color: #1787eb;
+      color: @theme-color;
       cursor: pointer;
       transition: all 0.5s;
       text-decoration: underline;
@@ -169,7 +169,7 @@ export default {
           padding-left: 4px;
           padding-top: 4px;
           padding-bottom: 4px;
-          font-size: 14px;
+          font-size: @14px;
           border-bottom: 1px solid #e4e4e4;
           font-weight: 400;
           caret-color: #1684e6;
@@ -239,7 +239,7 @@ export default {
   .download {
     line-height: 20px;
     span {
-      font-size: 14px;
+      font-size: @14px;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
       color: rgba(0, 0, 0, 1);

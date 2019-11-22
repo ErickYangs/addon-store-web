@@ -7,7 +7,9 @@ import * as Utils from '@/utils'
 import * as Storage from '@/utils/auth'
 import { CheckToken } from '@/api/role'
 import { message } from 'ant-design-vue'
-
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
+NProgress.configure({ showSpinner: false }) // NProgress Configuration
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,13 +40,13 @@ const routes = [
         path: 'edit',
         component: () => import('@/components/plugin/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: 'Plugin' },
+        meta: { title: 'Edit Article', noCache: true, activeMenu: 'Plugin' }
       },
       {
         path: 'create',
         component: () => import('@/components/plugin/create'),
         name: 'CreateArticle',
-        meta: { title: 'Create Article', noCache: true, activeMenu: 'Plugin' },
+        meta: { title: 'Create Article', noCache: true, activeMenu: 'Plugin' }
       }
     ]
   },
@@ -63,7 +65,21 @@ const routes = [
         path: 'createapp',
         component: () => import('@/components/application/addApp'),
         name: 'CreateApp',
-        meta: { title: 'Create Article', noCache: true, activeMenu: 'Application' },
+        meta: {
+          title: 'Create Article',
+          noCache: true,
+          activeMenu: 'Application'
+        }
+      },
+      {
+        path: 'applicationDetail',
+        component: () => import('@/components/application/appDetail'),
+        name: 'ApplicationDetail',
+        meta: {
+          title: 'applicationDetail',
+          noCache: true,
+          activeMenu: 'Application'
+        }
       }
     ]
   },
@@ -85,8 +101,13 @@ const routes = [
     ]
   },
   {
+    path: '/404',
+    component: () => import('@/components/errorPage/404'),
+    name: 'Error404'
+  },
+  {
     path: '*',
-    redirect: '/'
+    redirect: '/404'
   }
 ]
 
@@ -97,51 +118,63 @@ const router = new VueRouter({
 })
 
 // Route guard judges token
-// router.beforeEach(async (to, from, next) => {
-//   if (to.name === 'Login' || to.name === 'Register') {
-//     next()
-//     return
-//   }
-//   let token = Storage.getToken()
-//   if (!token) {
-//     let msg = 'Please log in again!'
-//     message.error(msg)
-//     next({ name: 'Login' })
-//     return
-//   }
+router.beforeEach(async (to, from, next) => {
+  NProgress.start()
+  if (to.name === 'Login' || to.name === 'Register' || to.name === 'Error404') {
+    next()
+    NProgress.done()
+    return
+  }
+  let token = Storage.getToken()
+  if (!token) {
+    let msg = 'Please log in again!'
+    message.error(msg)
+    next({ name: 'Login' })
+    NProgress.done()
+    return
+  }
+  // --------------------------------
+  next()
+  
+  // try {
+  //   let res = await CheckToken({ token })
+  //   console.log('token res', res)
 
-//   try {
-//     let res = await CheckToken({ token })
-//     console.log('token res', res)
+  //   let errorCode = res.error
+  //   if (errorCode != 0) {
+  //     let msg = ''
+  //     switch (errorCode) {
+  //       case 62002:
+  //         msg = 'Authentication failed, please log in again!'
+  //         break
+  //       case 62003:
+  //         msg = 'Session expired, please log in again!'
+  //         break
+  //       default:
+  //         msg = 'Please log in again!'
+  //         break
+  //     }
+  //     message.error(msg)
+  //     next({ name: 'Login' })
+  //     NProgress.done()
+  //     return false
+  //   }
+  //   Storage.setToken(res.result.token)
+  //   Storage.setNews('ontid', res.result.ontid)
+  //   Storage.setNews('userName', res.result.userName)
+  //   next()
+  // } catch (error) {
+  //   Storage.removeToken()
+  //   next({ name: 'Login' })
+  //   NProgress.done()
+  //   throw error
+  // }
+})
+router.afterEach(() => {
+  // finish progress bar
+  NProgress.done()
+})
 
-//     let errorCode = res.error
-//     if (errorCode != 0) {
-//       let msg = ''
-//       switch (errorCode) {
-//         case 62002:
-//           msg = 'Authentication failed, please log in again!'
-//           break
-//         case 62003:
-//           msg = 'Session expired, please log in again!'
-//           break
-//         default:
-//           msg = 'Please log in again!'
-//           break
-//       }
-//       message.error(msg)
-//       next({ name: 'Login' })
-//       return false
-//     }
-//     Storage.setToken(res.result.token)
-//     Storage.setNews('ontid', res.result.ontid)
-//     Storage.setNews('userName', res.result.userName)
-//     next()
-//   } catch (error) {
-//     Storage.removeToken()
-//     next({ name: 'Login' })
-//     throw error
-//   }
-// })
 const routerPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return routerPush.call(this, location).catch(error => error)

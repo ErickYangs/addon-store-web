@@ -30,7 +30,7 @@
               <span>All</span>
             </div>
           </a-menu-item>
-          <a-sub-menu key="ddxf">
+          <!-- <a-sub-menu key="ddxf">
             <span slot="title"
               ><i class="ddxf_icon"></i> <span>DDXF</span></span
             >
@@ -38,13 +38,19 @@
               <span class="home_sun_title">插件库</span>
             </a-menu-item>
             <a-menu-item key="Application"><span>App库</span></a-menu-item>
-          </a-sub-menu>
-          <!-- <a-menu-item key="3">
+          </a-sub-menu> -->
+          <a-menu-item key="Plugin">
             <div class="sub_wrap">
               <i class="ddxf_icon"></i>
-              <span>DDXF</span>
+              <span>插件库</span>
             </div>
-          </a-menu-item> -->
+          </a-menu-item>
+          <a-menu-item key="Application">
+            <div class="sub_wrap">
+              <i class="app_icon"></i>
+              <span>App库</span>
+            </div>
+          </a-menu-item>
         </a-menu>
         <div class="trigger">
           <i
@@ -87,6 +93,7 @@
 // @ is an alias to /src
 import userDiv from '@/components/model/User.vue'
 import langwDiv from '@/components/model/LangW.vue'
+import * as Store from '@/utils/auth'
 
 export default {
   name: 'home',
@@ -127,15 +134,11 @@ export default {
     //   this.openKeys = ['ddxf']
     // }
     // console.log('this.$route.', this.$route)
-    let current
+
     let route = this.$route
     const { meta, name } = route
     // if set path, the sidebar will highlight the path you set
-    if (meta.activeMenu) {
-      current = meta.activeMenu
-    } else {
-      current = name
-    }
+    let current = meta.activeMenu ? meta.activeMenu : name
     if (this.ddxfArr.includes(current)) {
       this.openKeys = ['ddxf']
     }
@@ -147,6 +150,14 @@ export default {
     openKeys(val) {
       console.log('openKeys', val)
     }
+  },
+  created() {
+    let account = {
+      ontid: Store.getNews('ontid'),
+      username: Store.getNews('userName'),
+      token: Store.getNews('token')
+    }
+    this.$store.commit('login/SET_ACCOUNT', account)
   }
 }
 </script>
@@ -156,7 +167,7 @@ export default {
   .ant-layout {
     height: 100%;
     .ant-layout-sider {
-      background: #1787eb;
+      background: @theme-color;
     }
     .ant-layout-header {
       height: 60px;
@@ -216,6 +227,10 @@ export default {
             background: url(../assets/images/ddxf_w.svg) no-repeat;
             background-size: contain;
           }
+          .app_icon {
+            background: url(../assets/images/all_w.svg) no-repeat;
+            background-size: contain;
+          }
         }
       }
       li.ant-menu-item-active {
@@ -230,12 +245,17 @@ export default {
             background: url(../assets/images/ddxf_b.svg) no-repeat !important;
             background-size: contain !important;
           }
+          .app_icon {
+            background: url(../assets/images/all_b.svg) no-repeat;
+            background-size: contain;
+          }
           span {
-            color: #1787eb !important;
+            color: @theme-color !important;
           }
         }
       }
       li.ant-menu-item-selected {
+        background: none !important;
         .sub_wrap {
           background: #fff;
           border-radius: 15px;
@@ -247,8 +267,12 @@ export default {
             background: url(../assets/images/ddxf_b.svg) no-repeat !important;
             background-size: contain !important;
           }
+          i.app_icon {
+            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background-size: contain !important;
+          }
           span {
-            color: #1787eb !important;
+            color: @theme-color !important;
           }
         }
       }
@@ -294,7 +318,7 @@ export default {
               background-size: contain;
             }
             span {
-              color: #1787eb !important;
+              color: @theme-color !important;
             }
           }
         }
@@ -321,7 +345,7 @@ export default {
               color: #fff;
               &:hover {
                 background: #fff;
-                color: #1787eb;
+                color: @theme-color;
               }
             }
           }
@@ -329,7 +353,7 @@ export default {
             background: none;
             span {
               background: #fff;
-              color: #1787eb;
+              color: @theme-color;
             }
           }
         }
@@ -345,7 +369,7 @@ export default {
     }
     .ant-menu-dark,
     .ant-menu-dark .ant-menu-sub {
-      background: #1787eb;
+      background: @theme-color;
     }
     .ant-menu.ant-menu-inline-collapsed > .ant-menu-item {
       padding: 0 17px !important;
@@ -379,6 +403,10 @@ export default {
           i.ddxf_icon {
             background: url(../assets/images/ddxf_b.svg) no-repeat;
             background-size: contain;
+          }
+          i.app_icon {
+            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background-size: contain !important;
           }
         }
       }
@@ -457,8 +485,12 @@ export default {
           background: url(../assets/images/ddxf_b.svg) no-repeat !important;
           background-size: contain !important;
         }
+        i.app_icon {
+          background: url(../assets/images/all_b.svg) no-repeat !important;
+          background-size: contain !important;
+        }
         span {
-          color: #1787eb !important;
+          color: @theme-color !important;
         }
       }
     }

@@ -66,7 +66,7 @@ export default {
     .end_left {
       height: 100%;
       flex: 2;
-      background: #1787eb;
+      background: @theme-color;
     }
     .end_right {
       height: 100%;

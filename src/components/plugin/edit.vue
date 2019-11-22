@@ -3,9 +3,6 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>DDXF</span>
-        </div>
-        <div class="bread_item">
           <span>Plug-in library</span>
         </div>
         <div class="bread_item">
@@ -97,8 +94,8 @@ export default {
   width: 100%;
   .breadcrumb {
     height: 42px;
-    border-bottom: 1px solid #efefef;
-    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #fafafa;
+    border-top: 1px solid #fafafa;
     display: flex;
     justify-content: flex-start;
     .bread_item {
@@ -132,7 +129,7 @@ export default {
         font-weight: 900;
         font-size: 38px;
         line-height: 46px;
-        color: rgba(23, 135, 235, 1);
+        color: @theme-color;
         margin-bottom: 10px;
       }
       .main_sub_desc {
@@ -155,7 +152,7 @@ export default {
       }
       .sun_title1 {
         font-size: 16px;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 24px;
         margin-bottom: 12px;
       }
@@ -166,9 +163,9 @@ export default {
         margin-bottom: 4px;
       }
       .sun_title3 {
-        font-size: 14px;
+        font-size: @14px;
         font-weight: 600;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 22px;
         margin-bottom: 6px;
       }
@@ -190,8 +187,8 @@ export default {
         margin-bottom: 40px;
         .label_name {
           height: 16px;
-          font-size: 14px;
-          color: rgba(0, 0, 0, 0.6);
+          font-size: @14px;
+          color: @color6;
           line-height: 16px;
           margin-bottom: 10px;
         }
@@ -205,7 +202,7 @@ export default {
           line-height: 22px;
           padding-top: 4px;
           padding-bottom: 4px;
-          font-size: 14px;
+          font-size: @14px;
           border-bottom: 1px solid #e4e4e4;
           font-weight: 400;
           &::-webkit-input-placeholder {
@@ -274,7 +271,7 @@ export default {
         );
         border-radius: 25px;
         cursor: pointer;
-        font-size: 14px;
+        font-size: @14px;
         font-weight: 400;
         color: rgba(255, 255, 255, 1);
         line-height: 40px;
@@ -289,7 +286,7 @@ export default {
       border-bottom: 1px solid #e4e4e4;
       position: relative;
       padding-right: 20px;
-      font-size: 14px;
+      font-size: @14px;
       span {
         position: absolute;
         right: 0;
