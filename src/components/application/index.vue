@@ -40,23 +40,28 @@
         </div>
         <div class="app_msg">
           <img src="" alt="" />
-          <div class="app_name single_ellipsis hover6">{{item.appName}}</div>
+          <div class="app_name single_ellipsis hover6">{{ item.appName }}</div>
         </div>
         <div class="btn_wrap">
           <span>Admin</span>
         </div>
       </div>
     </div>
+    <!-- <dialog-div></dialog-div> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+// import dialogDiv from '@/components/model/DialogRadio'
 export default {
   computed: {
     ...mapState({
       account: state => state.login.account
     })
+  },
+  components: {
+    // dialogDiv
   },
   data() {
     return {
@@ -76,7 +81,7 @@ export default {
         this.appList = []
         throw error
       }
-    }
+    },
   },
   created() {
     this.getAppList()

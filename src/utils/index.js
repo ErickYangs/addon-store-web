@@ -1,4 +1,5 @@
 import QRCode from 'qrcode'
+import moment from 'moment'
 
 /**
  * Open Link Page
@@ -32,4 +33,9 @@ export function createQRcode(params) {
       console.error(err)
       return ''
     })
+}
+
+export function formatTime(time) {
+  moment.locale('en')
+  return time ? moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a') : ''
 }

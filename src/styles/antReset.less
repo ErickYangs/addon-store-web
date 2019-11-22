@@ -2,7 +2,7 @@
 .table_body {
   margin-bottom: 40px;
   span.link_btn {
-    color: @theme-color;
+    color: #1787eb;
     text-decoration: underline;
     cursor: pointer;
     &:hover {
@@ -17,7 +17,7 @@
       width: 8px;
       height: 8px;
       transform: none;
-      background: @theme-color;
+      background: #1787eb;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -31,7 +31,7 @@
       tr {
         th {
           div {
-            color: @theme-color;
+            color: #1787eb;
             font-size: 16px;
             font-weight: 600;
           }
@@ -54,5 +54,110 @@
   }
   /deep/ .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
     background: #fafafa;
+  }
+}
+
+.ant-modal-wrap.out_dialog {
+  .ant-modal {
+    // vertical-align: baseline;
+    transform: translateY(-100px);
+    .ant-modal-content {
+      .ant-modal-header {
+        border-bottom: none;
+        padding: 40px 40px 60px;
+        .ant-modal-title {
+          height: 36px;
+          font-size: 38px;
+          font-weight: 600;
+          color: @theme-color;
+          line-height: 36px;
+        }
+      }
+      .ant-modal-body,
+      .ant-modal-footer {
+        padding: 40px;
+      }
+      .ant-modal-footer {
+        text-align: left;
+        border: none;
+        .next_btn {
+          display: block;
+          width: 120px;
+          height: 40px;
+          background: linear-gradient(
+            90deg,
+            rgba(11, 134, 240, 1) 0%,
+            rgba(60, 204, 251, 1) 100%
+          );
+          border-radius: 25px;
+          font-size: @14px;
+          line-height: 40px;
+          font-weight: 400;
+          border: none;
+          box-shadow: none;
+        }
+      }
+      .ant-modal-close {
+        top: -80px;
+        right: -80px;
+        .ant-modal-close-x {
+          i {
+            // display: none;
+            width: 20px;
+            height: 20px;
+            background: url(../assets/images/close_icon.svg) no-repeat center;
+            background-size: cover;
+            svg {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dialog_content {
+  width: 100%;
+}
+.ant-checkbox-group {
+  width: 100%;
+  .ant-checkbox-wrapper {
+    height: 22px;
+    margin-bottom: 28px;
+    margin-left: 0;
+    .ant-checkbox {
+      vertical-align: unset;
+      top: -3px;
+      .ant-checkbox-inner {
+        border-radius: 50%;
+        border-color: @theme-color;
+      }
+      & + span {
+        display: inline-block;
+        width: 97px;
+        padding-left: 24px;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 1);
+        line-height: 22px;
+        overflow: hidden;
+      }
+    }
+    .ant-checkbox-checked {
+      .ant-checkbox-inner {
+        background-color: #fff;
+      }
+      .ant-checkbox-inner::after {
+        width: 10px;
+        height: 10px;
+        background: @theme-color;
+        border: none;
+        border-radius: 50%;
+        left: 50%;
+        transform: none;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 }

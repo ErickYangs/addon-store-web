@@ -17,29 +17,43 @@ import '@/styles/index.less'
 import {
   Avatar,
   Button,
+  Checkbox,
+  Col,
   Input,
   InputNumber,
   Dropdown,
   Icon,
   Menu,
   message,
+  Row,
   LocaleProvider,
   ConfigProvider,
   Layout,
   Steps,
-  Table
+  Table,
+  Modal
 } from 'ant-design-vue'
 Vue.prototype.$message = message
+Vue.prototype.$info = Modal.info
+Vue.prototype.$success = Modal.success
+Vue.prototype.$error = Modal.error
+Vue.prototype.$warning = Modal.warning
+Vue.prototype.$confirm = Modal.confirm
+Vue.prototype.$destroyAll = Modal.destroyAll
 Vue.use(Avatar)
 Vue.use(Button)
+Vue.use(Checkbox)
+Vue.use(Col)
 Vue.use(Input)
 Vue.use(InputNumber)
 Vue.use(Dropdown)
 Vue.use(Icon)
 Vue.use(Menu)
+Vue.use(Modal)
 Vue.use(LocaleProvider)
 Vue.use(ConfigProvider)
 Vue.use(Layout)
+Vue.use(Row)
 Vue.use(Steps)
 Vue.use(Table)
 

@@ -7,7 +7,7 @@
         }
       "
     >
-      <a class="ant-dropdown-link" href="#">
+      <a class="ant-dropdown-link">
         <div class="usericon">
           <a-avatar :size="30" icon="user" />
           <i class="arrow_"></i>
@@ -15,7 +15,7 @@
       </a>
       <a-menu slot="overlay">
         <a-menu-item>
-          <span>Econ</span>
+          <span>{{ account.username }}</span>
         </a-menu-item>
         <a-menu-item>
           <span @click="logOut">Drop out</span>
@@ -27,12 +27,18 @@
 
 <script>
 import * as Storage from '@/utils/auth'
+import { mapState } from 'vuex'
 
 export default {
+  computed: {
+    ...mapState({
+      account: state => state.login.account
+    })
+  },
   methods: {
     logOut() {
       Storage.clear()
-      this.$router.push({ path: 'login' })
+      this.$router.push({ name: 'Login' })
     }
   }
 }
@@ -88,6 +94,10 @@ export default {
           text-align: center;
           font-weight: 400;
           color: @color6;
+          padding: 0 25px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
       li.ant-dropdown-menu-item:hover {

@@ -19,20 +19,19 @@
       <div class="addon_message">
         <div class="form_area">
           <div class="form_menu_item">
-            <div class="label_name">Application Name</div>
+            <div class="label_name">Add-on Name</div>
             <input
-              v-model="appNews.appName"
+              v-model="appNews.addonName"
               type="text"
-              placeholder="Please Input Application Name"
-              disabled
+              placeholder="Please Input Add-on Name"
             />
           </div>
           <div class="form_menu_item">
-            <div class="label_name">Application ONT ID</div>
-            <input v-model="appNews.ontId" type="text" disabled />
+            <div class="label_name">Add-on Create Time</div>
+            <input v-model="appNews.createTime" type="text" disabled />
           </div>
-          <div class="form_menu_item">
-            <div class="label_name">Application Wif</div>
+          <!-- <div class="form_menu_item">
+            <div class="label_name">Add-on Wif</div>
             <div class="app_wif_wrap" v-if="wifShow">
               {{ appNews.wif }}
               <span class="close" @click="wifShow = false"></span>
@@ -43,19 +42,19 @@
             </div>
           </div>
           <div class="form_menu_item">
-            <div class="label_name">Application Domain</div>
+            <div class="label_name">Add-on Domain</div>
             <input v-model="appNews.domain" type="text" disabled />
-          </div>
+          </div>-->
           <div class="form_menu_item">
-            <div class="label_name">Application Description</div>
+            <div class="label_name">Add-on Description</div>
             <textarea
-              v-model="appNews.appDesc"
-              placeholder="Please Input Application Description"
+              v-model="appNews.description"
+              placeholder="Please Input Add-on Description"
             ></textarea>
           </div>
         </div>
         <div class="_btn_wrap">
-          <span class="hover6">Update</span>
+          <a-button @click="updateAddon">Update</a-button>
         </div>
       </div>
       <div class="json_area"></div>
@@ -64,16 +63,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState({
+      account: state => state.login.account
+    })
+  },
   data() {
     return {
       appNews: {
-        appName: 'Singing',
-        appDesc: '',
-        ontId: 'did:ont:ALQAmoUQwfupnDqkXQ1EEdGhhFkUNkS1uy',
+        addonName: '',
+        description: '',
+        ontid: '',
         wif: 'ALQAmoUQwfupnDqkXQ1EEdGhhFkUNkS1uy',
-        domain: 'ontology.com'
+        domain: 'ontology.com',
+        createTime: ''
       },
+      appId: '',
       wifShow: false
     }
   },
@@ -85,6 +92,50 @@ export default {
       }
       return str
     }
+  },
+  methods: {
+    async getCustomAddonDetail() {
+      try {
+        let result = await this.$http.Addon.queryCustomAddonDetail(this.appId)
+        console.log('custom add-on detail', result)
+        if (result.desc !== 'SUCCESS') return false
+        this.appNews = result.result
+        this.appNews.createTime = this.$utils.formatTime(
+          result.result.createTime
+        )
+      } catch (error) {
+        throw error
+      }
+    },
+    async updateAddon() {
+      if (!this.appNews.addonName) {
+        this.$message.error('Please Input Add-on Name!')
+        return false
+      }
+      let params = {
+        addonName: this.appNews.addonName,
+        description: this.appNews.description,
+        id: this.appId,
+        ontid: this.account.ontid
+      }
+      try {
+        let result = await this.$http.Addon.updateCustomAddon(params)
+        console.log('update add-on result', result)
+        if (result.desc !== 'SUCCESS' || result.result !== 'SUCCESS') {
+          this.$message.error('Update Add-on Fail, Please Try Again')
+          return false
+        }
+        this.$message.success('Update Add-on Success!')
+        this.$router.push({name: 'PluginLayout'})
+      } catch (error) {
+        throw error
+      }
+    }
+  },
+  created() {
+    this.appId = this.$route.query.id
+    console.log(this.appId)
+    this.getCustomAddonDetail()
   }
 }
 </script>
@@ -260,7 +311,8 @@ export default {
     }
     ._btn_wrap {
       margin-top: 60px;
-      span {
+      button {
+        border: none;
         display: block;
         width: 120px;
         height: 40px;
