@@ -3,16 +3,7 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>DDXF</span>
-          <!-- <div class="triangle_border_right">
-            <span></span>
-          </div> -->
-        </div>
-        <div class="bread_item">
-          <span>DDXF</span>
-          <!-- <div class="triangle_border_right">
-            <span></span>
-          </div> -->
+          <span>Plug-in library</span>
         </div>
       </div>
       <div class="main_message_wrap">
@@ -41,48 +32,18 @@
       </div>
     </div>
     <div class="plugin_body">
+      <!-- Cydia -->
       <div class="lib_wrap">
         <div class="lib_title">Cydia</div>
         <div class="lib_wrap">
-          <div @click="$router.push({name: 'EditArticle'})" class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc hover6">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc hover6">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
+          <div
+            @click="$router.push({ name: 'EditArticle' })"
+            class="lib_item hover6"
+            v-for="(item, index) in commonAddonList"
+            :key="index"
+          >
+            <div class="lib_item_title hover6">{{ item.addonName }}</div>
+            <div class="lib_item_desc hover6">{{ item.description }}</div>
             <div class="lib_item_config">Admin</div>
             <div class="lib_item_edit">
               <i class="edit_b"></i>
@@ -91,55 +52,27 @@
           </div>
         </div>
       </div>
+      <!-- Custom plug-inia -->
       <div class="lib_wrap">
         <div class="lib_title">Custom plug-inia</div>
         <div class="lib_wrap">
-          <div @click="$router.push({name: 'CreateArticle'})" class="lib_item hover6 add_plugin_wrap">
+          <div
+            @click="$router.push({ name: 'CreateArticle' })"
+            class="lib_item hover6 add_plugin_wrap"
+          >
             <div class="lib_item_add_wrap hover6">
               <i class="add_b"></i>
               <i class="add_w"></i>
             </div>
             <div class="lib_item_add_tips hover6">Add New Addon</div>
           </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
-            <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div>
-          </div>
-          <div class="lib_item hover6">
-            <div class="lib_item_title hover6">authsaas</div>
-            <div class="lib_item_desc">authsaasauthsaasauthsaas</div>
+          <div
+            class="lib_item hover6"
+            v-for="(item, index) in customAddonList"
+            :key="index"
+          >
+            <div class="lib_item_title hover6">{{ item.addonName }}</div>
+            <div class="lib_item_desc">{{ item.description }}</div>
             <div class="lib_item_config">Admin</div>
             <div class="lib_item_edit">
               <i class="edit_b"></i>
@@ -152,7 +85,46 @@
   </div>
 </template>
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState({
+      account: state => state.login.account
+    })
+  },
+  data() {
+    return {
+      commonAddonList: [],
+      customAddonList: []
+    }
+  },
+  methods: {
+    async getCommonAddonList() {
+      try {
+        let result = await this.$http.Addon.queryCommonAddon()
+        // console.log('common add-on list', result)
+        if (result.desc !== 'SUCCESS') return false
+        this.commonAddonList = result.result
+      } catch (error) {
+        throw error
+      }
+    },
+    async getCustomAddonList() {
+      try {
+        let result = await this.$http.Addon.queryCustomAddon(this.account.ontid)
+        console.log('custom add-on list', result)
+        if (result.desc !== 'SUCCESS') return false
+        this.customAddonList = result.result
+      } catch (error) {
+        throw error
+      }
+    }
+  },
+  created() {
+    this.getCommonAddonList()
+    this.getCustomAddonList()
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -160,8 +132,8 @@ export default {}
   width: 100%;
   .breadcrumb {
     height: 42px;
-    border-bottom: 1px solid #efefef;
-    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #fafafa;
+    border-top: 1px solid #fafafa;
     display: flex;
     justify-content: flex-start;
     .bread_item {
@@ -195,7 +167,7 @@ export default {}
         font-weight: 900;
         font-size: 38px;
         line-height: 46px;
-        color: rgba(23, 135, 235, 1);
+        color: @theme-color;
         margin-bottom: 10px;
       }
       .main_sub_desc {
@@ -218,7 +190,7 @@ export default {}
       }
       .sun_title1 {
         font-size: 16px;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 24px;
         margin-bottom: 12px;
       }
@@ -229,9 +201,9 @@ export default {}
         margin-bottom: 4px;
       }
       .sun_title3 {
-        font-size: 14px;
+        font-size: @14px;
         font-weight: 600;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 22px;
         margin-bottom: 6px;
       }
@@ -245,7 +217,7 @@ export default {}
       .lib_title {
         font-size: 20px;
         font-weight: 600;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 28px;
         padding-left: 10px;
       }
@@ -271,7 +243,7 @@ export default {}
             height: 28px;
             font-size: 20px;
             font-weight: 600;
-            color: #1787eb;
+            color: @theme-color;
             line-height: 28px;
             overflow: hidden;
             white-space: nowrap;
@@ -298,9 +270,9 @@ export default {}
             bottom: 20px;
             width: 70px;
             height: 24px;
-            border: 1px solid rgba(23, 135, 235, 1);
-            font-size: 14px;
-            color: rgba(23, 135, 235, 1);
+            border: 1px solid @theme-color;
+            font-size: @14px;
+            color: @theme-color;
             line-height: 22px;
             text-align: center;
             border-radius: 12px;
@@ -326,7 +298,7 @@ export default {}
             }
           }
           &:hover {
-            background: rgba(23, 135, 235, 1);
+            background: @theme-color;
             .lib_item_title {
               color: #fff;
             }
@@ -383,7 +355,7 @@ export default {}
             }
           }
           .lib_item_add_tips {
-              color: #fff;
+            color: #fff;
           }
         }
       }

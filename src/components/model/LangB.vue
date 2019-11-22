@@ -63,7 +63,7 @@ export default {
     font-size: 16px;
     font-weight: 400;
     text-align: center;
-    color: rgba(23, 135, 235, 1);
+    color: @theme-color;
     line-height: 26px;
     padding-left: 26px;
     padding-right: 26px;
@@ -71,8 +71,8 @@ export default {
     // border: 1px solid #000;
     &::before {
       content: "";
-      width: 14px;
-      height: 14px;
+      width: @14px;
+      height: @14px;
       background: url(../../assets/images/lang_ball.svg) no-repeat;
       background-size: contain;
       position: absolute;
@@ -111,7 +111,7 @@ export default {
           line-height: 45px;
           text-align: center;
           font-weight: 400;
-          color: rgba(0, 0, 0, 0.6);
+          color: @color6;
         }
       }
       li.ant-dropdown-menu-item:hover {

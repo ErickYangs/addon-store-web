@@ -3,9 +3,6 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>DDXF</span>
-        </div>
-        <div class="bread_item">
           <span>App</span>
         </div>
       </div>
@@ -21,47 +18,29 @@
       </div>
     </div>
     <div class="app_body">
-      <div @click="$router.push({name: 'CreateApp'})" class="app_item add_app_wrap hover6">
+      <div
+        @click="$router.push({ name: 'CreateApp' })"
+        class="app_item add_app_wrap hover6"
+      >
         <div class="lib_item_add_wrap hover6">
           <i class="add_b"></i>
           <i class="add_w"></i>
         </div>
         <div class="lib_item_add_tips hover6">Add New App</div>
       </div>
-      <div class="app_item hover6">
+      <div
+        @click="$router.push({ name: 'ApplicationDetail' })"
+        class="app_item hover6"
+        v-for="(item, index) in appList"
+        :key="index"
+      >
         <div class="add_download_wrap">
           <i class="down_b"></i>
           <i class="down_w"></i>
         </div>
         <div class="app_msg">
           <img src="" alt="" />
-          <div class="app_name single_ellipsis hover6">Marketplace</div>
-        </div>
-        <div class="btn_wrap">
-          <span>Admin</span>
-        </div>
-      </div>
-      <div class="app_item hover6">
-        <div class="add_download_wrap">
-          <i class="down_b"></i>
-          <i class="down_w"></i>
-        </div>
-        <div class="app_msg">
-          <img src="" alt="" />
-          <div class="app_name single_ellipsis hover6">Marketplace</div>
-        </div>
-        <div class="btn_wrap">
-          <span>Admin</span>
-        </div>
-      </div>
-      <div class="app_item hover6">
-        <div class="add_download_wrap">
-          <i class="down_b"></i>
-          <i class="down_w"></i>
-        </div>
-        <div class="app_msg">
-          <img src="" alt="" />
-          <div class="app_name single_ellipsis hover6">Marketplace</div>
+          <div class="app_name single_ellipsis hover6">{{item.appName}}</div>
         </div>
         <div class="btn_wrap">
           <span>Admin</span>
@@ -71,13 +50,47 @@
   </div>
 </template>
 
+<script>
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState({
+      account: state => state.login.account
+    })
+  },
+  data() {
+    return {
+      appList: []
+    }
+  },
+  methods: {
+    async getAppList() {
+      try {
+        let result = await this.$http.Application.queryAppList(
+          this.account.ontid
+        )
+        console.log('app list', result)
+        if (result.desc !== 'SUCCESS') return false
+        this.appList = result.result
+      } catch (error) {
+        this.appList = []
+        throw error
+      }
+    }
+  },
+  created() {
+    this.getAppList()
+  }
+}
+</script>
+
 <style lang="less" scoped>
 .main_tips {
   width: 100%;
   .breadcrumb {
     height: 42px;
-    border-bottom: 1px solid #efefef;
-    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #fafafa;
+    border-top: 1px solid #fafafa;
     display: flex;
     justify-content: flex-start;
     .bread_item {
@@ -111,7 +124,7 @@
         font-weight: 900;
         font-size: 38px;
         line-height: 46px;
-        color: rgba(23, 135, 235, 1);
+        color: @theme-color;
         margin-bottom: 10px;
       }
       .main_sub_desc {
@@ -134,7 +147,7 @@
       }
       .sun_title1 {
         font-size: 16px;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 24px;
         margin-bottom: 12px;
       }
@@ -145,9 +158,9 @@
         margin-bottom: 4px;
       }
       .sun_title3 {
-        font-size: 14px;
+        font-size: @14px;
         font-weight: 600;
-        color: rgba(0, 0, 0, 0.6);
+        color: @color6;
         line-height: 22px;
         margin-bottom: 6px;
       }
@@ -210,7 +223,7 @@
           padding-right: 10px;
           font-size: 20px;
           font-weight: 600;
-          color: rgba(23, 135, 235, 1);
+          color: @theme-color;
           height: 40px;
           line-height: 40px;
         }
@@ -226,16 +239,16 @@
           margin: 0 auto;
           width: 71px;
           height: 24px;
-          border: 1px solid #1787eb;
+          border: 1px solid @theme-color;
           border-radius: 12px;
-          line-height: 24px;
+          line-height: 22px;
           text-align: center;
-          font-size: 14px;
-          color: #1787eb;
+          font-size: @14px;
+          color: @theme-color;
         }
       }
       &:hover {
-        background: rgba(23, 135, 235, 1);
+        background: @theme-color;
         .add_download_wrap {
           i.down_b {
             display: none;
