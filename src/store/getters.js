@@ -1,5 +1,6 @@
 const getters = {
-  code: state => state.login.code,
-  lang: state => state.lang.lang
+  account: state => state.login.account,
+  lang: state => state.lang.lang,
+  PluginIdArr: state => state.createApp.PluginIdArr
 }
 export default getters

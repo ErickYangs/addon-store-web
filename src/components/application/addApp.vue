@@ -22,73 +22,32 @@
     </div>
     <div class="add_content">
       <div class="steps">
-        <a-steps :current="current">
+        <a-steps :current="currentStep">
           <a-step v-for="item in steps" :key="item.title" />
         </a-steps>
-        <div class="steps-content">{{ steps[current].content }}</div>
-        <div class="steps-action">
-          <a-button
-            v-if="current < steps.length - 1"
-            type="primary"
-            @click="next"
-          >
-            Next
-          </a-button>
-          <a-button
-            v-if="current == steps.length - 1"
-            type="primary"
-            @click="$message.success('Processing complete!')"
-          >
-            Done
-          </a-button>
-          <a-button v-if="current > 0" style="margin-left: 8px" @click="prev">
-            Previous
-          </a-button>
-        </div>
       </div>
-      <sdktable-div></sdktable-div>
-      <!-- select sdk -->
-      <div class="select_sdk">
-        <div class="select_title">添加可以选择SDK插件</div>
-        <div class="app_sdk_layout">
-          <div class="sdk_ele">
-            <img src="" alt="" />
-          </div>
-          <div class="sdk_ele add_btns hover6">
-            <i class="add_b"></i>
-            <i class="add_w"></i>
-          </div>
-        </div>
-      </div>
-      <!-- download sdk -->
-      <div class="download_sdk">
-        <div class="down_title">
-          已为你生成add的专属sdk插件
-        </div>
-        <div class="link_body">
-          <div class="link_title">sdk下载安装lis</div>
-          <div class="link_cont">
-            <span class="hover6">SDK Download Link</span>
-            <span class="hover6">SDK Download Link</span>
-            <span class="hover6">SDK Download Link</span>
-            <span class="hover6">SDK Download Link</span>
-          </div>
-        </div>
-      </div>
-      <div v-if="current < steps.length - 1" class="next_btn hover6">
-        Next
-      </div>
-      <div v-if="current == steps.length - 1" class="next_btn hover6">
-        Back
-      </div>
+      <step1AddApp-div v-if="currentStep === 0"></step1AddApp-div>
+      <step2EditApp-div v-else-if="currentStep === 1"></step2EditApp-div>
+      <step3Link-div v-else></step3Link-div>
     </div>
   </div>
 </template>
 
 <script>
 import sdktableDiv from '@/components/model/SdkTable'
+import step1AddAppDiv from '@/components/application/Step1'
+import step2EditAppDiv from '@/components/application/Step2'
+import step3LinkDiv from '@/components/application/Step3'
+
+import { mapState } from 'vuex'
+import * as Store from '@/utils/auth'
 export default {
-  components: { sdktableDiv },
+  computed: {
+    ...mapState({
+      currentStep: state => state.createApp.currentStep
+    })
+  },
+  components: { sdktableDiv, step1AddAppDiv, step2EditAppDiv, step3LinkDiv },
   data() {
     return {
       current: 0,
@@ -105,15 +64,28 @@ export default {
           title: 'Last',
           content: 'Last-content'
         }
-      ]
+      ],
+      appNews: {
+        appName: '',
+        appDesc: ''
+      }
     }
   },
   methods: {
     next() {
-      this.current++
+      this.$store.commit('createApp/CHANGE_STEP_ADD')
     },
     prev() {
       this.current--
+    }
+  },
+  beforeDestroy() {
+    this.$store.commit('createApp/RESERT_STEP')
+  },
+  created() {
+    let info = JSON.parse(Store.getNews('undoneInfo'))
+    if (info) {
+      this.next()
     }
   }
 }
@@ -206,102 +178,10 @@ export default {
   padding: 30px;
   .steps {
     width: 440px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
 }
-.select_sdk {
-  .select_title {
-    height: 24px;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 1);
-    line-height: 24px;
-    margin-bottom: 20px;
-  }
-  .app_sdk_layout {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    .sdk_ele {
-      width: 70px;
-      height: 70px;
-      border-radius: 10px;
-      border: 1px solid rgba(242, 242, 242, 1);
-      margin-right: 40px;
-      margin-bottom: 40px;
-      cursor: pointer;
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        background: tomato;
-      }
-    }
-    .add_btns {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      i {
-        display: block;
-        width: 22px;
-        height: 22px;
-        background-size: contain;
-      }
-      i.add_b {
-        background: url(../../assets/images/add_b.svg) no-repeat center;
-      }
-      i.add_w {
-        display: none;
-        background: url(../../assets/images/add_w.svg) no-repeat center;
-      }
-      &:hover {
-        background: @theme-color;
-        i.add_b {
-          display: none;
-        }
-        i.add_w {
-          display: block;
-        }
-      }
-    }
-  }
-}
-.download_sdk {
-  .down_title {
-    height: 24px;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 1);
-    line-height: 24px;
-    margin-bottom: @14px;
-  }
-  .link_body {
-    color: @theme-color;
-    .link_title {
-      height: 28px;
-      font-size: 20px;
-      font-weight: 600;
-      color: @theme-color;
-      line-height: 28px;
-      margin-bottom: 20px;
-    }
-    .link_cont {
-      span {
-        display: block;
-        width: 140px;
-        height: 22px;
-        font-size: @14px;
-        color: @theme-color;
-        line-height: 22px;
-        margin: 10px 0;
-        text-decoration: underline;
-        cursor: pointer;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    }
-  }
-}
+
 .steps-content {
   margin-top: 16px;
   border: 1px dashed #e9e9e9;

@@ -1,6 +1,5 @@
 <template>
   <div class="dialog_box">
-    <a-button type="primary" @click="showModal">Open Modal</a-button>
     <a-modal
       wrapClassName="out_dialog"
       width="890px"
@@ -23,24 +22,26 @@
         <div class="plugin_onwer">
           <div class="onwer_title">Plug-in</div>
           <div class="plg_wrap">
-            <a-checkbox-group @change="onChange">
-              <a-checkbox value="A">Singning</a-checkbox>
-              <a-checkbox value="B">Singning</a-checkbox>
-              <a-checkbox value="C">Claim</a-checkbox>
-              <a-checkbox value="D">Singning</a-checkbox>
-              <a-checkbox value="E">E</a-checkbox>
+            <a-checkbox-group @change="onChangePlug">
+              <a-checkbox
+                v-for="(ele, index) in commonAddonList"
+                :key="index"
+                :value="ele.id"
+                >{{ ele.addonName }}</a-checkbox
+              >
             </a-checkbox-group>
           </div>
         </div>
         <div class="plugin_onwer">
           <div class="onwer_title">Custom Plug-in</div>
           <div class="plg_wrap">
-            <a-checkbox-group @change="onChange">
-              <a-checkbox value="A">Singning</a-checkbox>
-              <a-checkbox value="B">Singning</a-checkbox>
-              <a-checkbox value="C">Claim</a-checkbox>
-              <a-checkbox value="D">Singning</a-checkbox>
-              <a-checkbox value="E">E</a-checkbox>
+            <a-checkbox-group @change="onChangeCustom">
+              <a-checkbox
+                v-for="(ele, index) in customAddonList"
+                :key="index"
+                :value="ele.id"
+                >{{ ele.addonName }}</a-checkbox
+              >
             </a-checkbox-group>
           </div>
         </div>
@@ -51,11 +52,27 @@
 <script>
 import '@/styles/antReset.less'
 export default {
+  props: {
+    commonAddonList: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    customAddonList: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
   data() {
     return {
-      visible: true,
+      visible: false,
       loading: true,
-      centered: true
+      centered: true,
+      commonAddonIds: [],
+      customAddonIds: []
     }
   },
   methods: {
@@ -64,13 +81,22 @@ export default {
     },
     handleOk(e) {
       console.log(e)
+      this.$emit('handlerSelectData', {
+        commonAddonIds: this.commonAddonIds,
+        customAddonIds: this.customAddonIds
+      })
       this.visible = false
     },
     handleCancel(e) {
       this.visible = false
     },
-    onChange(checkedValues) {
-      console.log('checked = ', checkedValues)
+    onChangePlug(checkedValues) {
+      console.log('checked1 = ', checkedValues)
+      this.commonAddonIds = [...checkedValues]
+    },
+    onChangeCustom(checkedValues) {
+      console.log('checked2 = ', checkedValues)
+      this.customAddonIds = [...checkedValues]
     }
   }
 }

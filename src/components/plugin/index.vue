@@ -15,7 +15,7 @@
             traceability and cross-system data processing.
           </div>
         </div>
-        <div class="main_message_right">
+        <!-- <div class="main_message_right">
           <div class="left_m">
             <div class="sun_title1">Dosage</div>
             <div class="sun_title2">Name</div>
@@ -28,7 +28,7 @@
             <div class="sun_title3 number_style">548,210</div>
             <div class="sun_title3 number_style">375,32</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="plugin_body">
@@ -37,9 +37,11 @@
         <div class="lib_title">Cydia</div>
         <div class="lib_wrap">
           <div
-            @click="$router.push({ name: 'AddonDetail', query: { id: item.id } })"
+            @click="
+              $router.push({ name: 'AddonDetail', query: { id: item.id } })
+            "
             class="lib_item hover6"
-            v-for="(item, index) in commonAddonList"
+            v-for="(item, index) in commonAddon"
             :key="index"
           >
             <div class="lib_item_title hover6">{{ item.addonName }}</div>
@@ -67,9 +69,11 @@
             <div class="lib_item_add_tips hover6">Add New Addon</div>
           </div>
           <div
-          @click="$router.push({name: 'EditArticle', query: { id: item.id }})"
+            @click="
+              $router.push({ name: 'EditArticle', query: { id: item.id } })
+            "
             class="lib_item hover6"
-            v-for="(item, index) in customAddonList"
+            v-for="(item, index) in customAddon"
             :key="index"
           >
             <div class="lib_item_title hover6">{{ item.addonName }}</div>
@@ -90,41 +94,16 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      account: state => state.login.account
+      account: state => state.login.account,
+      commonAddon: state => state.login.commonAddon,
+      customAddon: state => state.login.customAddon
     })
   },
   data() {
-    return {
-      commonAddonList: [],
-      customAddonList: []
-    }
+    return {}
   },
-  methods: {
-    async getCommonAddonList() {
-      try {
-        let result = await this.$http.Addon.queryCommonAddon()
-        // console.log('common add-on list', result)
-        if (result.desc !== 'SUCCESS') return false
-        this.commonAddonList = result.result
-      } catch (error) {
-        throw error
-      }
-    },
-    async getCustomAddonList() {
-      try {
-        let result = await this.$http.Addon.queryCustomAddon(this.account.ontid)
-        console.log('custom add-on list', result)
-        if (result.desc !== 'SUCCESS') return false
-        this.customAddonList = result.result
-      } catch (error) {
-        throw error
-      }
-    }
-  },
-  created() {
-    this.getCommonAddonList()
-    this.getCustomAddonList()
-  }
+  methods: {},
+  created() {}
 }
 </script>
 

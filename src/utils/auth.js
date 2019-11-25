@@ -33,6 +33,9 @@ export function setNews(name, data) {
 export function getNews(name) {
   return storage.getItem(name)
 }
+export function removeNews(name) {
+  return storage.removeItem(name)
+}
 export function clear() {
   return storage.clear()
 }

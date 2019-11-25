@@ -151,13 +151,15 @@ export default {
       console.log('openKeys', val)
     }
   },
-  created() {
+  async created() {
     let account = {
       ontid: Store.getNews('ontid'),
       username: Store.getNews('userName'),
       token: Store.getNews('token')
     }
     this.$store.commit('login/SET_ACCOUNT', account)
+    await this.$store.dispatch('login/getCustomAddon')
+    await this.$store.dispatch('login/getCommonAddon')
   }
 }
 </script>
