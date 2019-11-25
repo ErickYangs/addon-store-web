@@ -78,6 +78,7 @@ export default {
           return false
         }
         this.$message.success('Create Add-on Success!')
+        await this.$store.dispatch('login/getCustomAddon')
         this.$router.push({name: 'PluginLayout'})
       } catch (error) {
         this.$message.error('Create Add-on Fail!')

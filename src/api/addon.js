@@ -1,5 +1,12 @@
 import request from './request'
 
+export function queryAppAddonStatus(appId) {
+  return request({
+    url: `/api/v1/addon/${appId}`,
+    method: 'GET'
+  })
+}
+
 /**
  * query common add-on list api
  */
@@ -11,7 +18,7 @@ export function queryCommonAddon() {
 }
 /**
  * get detail by add-on id
- * @param {add-on id} id 
+ * @param {add-on id} id
  */
 export function queryCommonAddonDetail(id) {
   return request({
@@ -33,7 +40,7 @@ export function queryCustomAddon(ontid) {
 
 /**
  * get custom add-on detail by add-on id
- * @param {custom add-on id} id 
+ * @param {custom add-on id} id
  */
 export function queryCustomAddonDetail(id) {
   return request({
@@ -44,7 +51,7 @@ export function queryCustomAddonDetail(id) {
 
 /**
  * create custon data
- * @param {Object} data 
+ * @param {Object} data
  */
 export function createCustomAdd(data) {
   return request({

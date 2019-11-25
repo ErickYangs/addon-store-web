@@ -18,10 +18,7 @@
       </div>
     </div>
     <div class="app_body">
-      <div
-        @click="$router.push({ name: 'CreateApp' })"
-        class="app_item add_app_wrap hover6"
-      >
+      <div @click="CreateApp" class="app_item add_app_wrap hover6">
         <div class="lib_item_add_wrap hover6">
           <i class="add_b"></i>
           <i class="add_w"></i>
@@ -47,21 +44,18 @@
         </div>
       </div>
     </div>
-    <!-- <dialog-div></dialog-div> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-// import dialogDiv from '@/components/model/DialogRadio'
+import * as Store from '@/utils/auth'
+
 export default {
   computed: {
     ...mapState({
       account: state => state.login.account
     })
-  },
-  components: {
-    // dialogDiv
   },
   data() {
     return {
@@ -82,6 +76,33 @@ export default {
         throw error
       }
     },
+    showDeleteConfirm() {
+      let _self = this
+      this.$confirm({
+        title:
+          'The last addition has not been completed. Do you want to continue?',
+        content: '',
+        okText: 'Yes',
+        okType: 'success',
+        cancelText: 'No',
+        onOk() {
+          console.log(_self)
+          _self.$router.push({ name: 'CreateApp' })
+        },
+        onCancel() {
+          Store.removeNews('undoneInfo')
+          _self.$router.push({ name: 'CreateApp' })
+        }
+      })
+    },
+    CreateApp() {
+      let info = Store.getNews('undoneInfo')
+      if (info) {
+        this.showDeleteConfirm()
+      } else {
+        this.$router.push({ name: 'CreateApp' })
+      }
+    }
   },
   created() {
     this.getAppList()

@@ -18,7 +18,7 @@
             traceability and cross-system data processing.
           </div>
         </div>
-        <div class="main_message_right">
+        <!-- <div class="main_message_right">
           <div class="version_wrap">
             <div class="ver_layout">
               <div class="ver_main_title">
@@ -51,7 +51,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- Subject information  -->
