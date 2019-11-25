@@ -19,7 +19,9 @@
     <div class="desc_lay">
       <div class="content">
         <div class="desc_bx">
-          <span>DDXF</span> is a decentralized data exchange and collaboration framework. DDXF is able to tokenize any valuable data and provides data traceability and cross-system data processing.
+          <span>DDXF</span> is a decentralized data exchange and collaboration
+          framework. DDXF is able to tokenize any valuable data and provides
+          data traceability and cross-system data processing.
         </div>
       </div>
     </div>
@@ -247,4 +249,3 @@ export default {
   }
 }
 </style>
-
