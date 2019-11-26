@@ -46,11 +46,11 @@
           >
             <div class="lib_item_title hover6">{{ item.addonName }}</div>
             <div class="lib_item_desc hover6">{{ item.description }}</div>
-            <div class="lib_item_config">Admin</div>
+            <!-- <div class="lib_item_config">Admin</div>
             <div class="lib_item_edit">
               <i class="edit_b"></i>
               <i class="edit_w"></i>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -279,6 +279,7 @@ export default {
           }
           &:hover {
             background: @theme-color;
+            box-shadow: 0 0 6px @theme-color;
             .lib_item_title {
               color: #fff;
             }

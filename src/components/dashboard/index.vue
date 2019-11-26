@@ -1,5 +1,63 @@
 <template>
-    <div>
-        dashboard
+  <div class="dashboard">
+    <div class="word_bg"></div>
+    <div class="slogin">
+      <div class="main_slogin">
+        Create a project Auth Saas
+      </div>
+      <div class="go_tips">Let’s go Auth Saas.</div>
+      <a-button class="get_start_btn">Get Started</a-button>
     </div>
+  </div>
 </template>
+
+<style lang="less" scoped>
+.dashboard {
+  width: 100%;
+  height: 100vh;
+  background: @theme-color;
+  position: relative;
+  margin-top: -60px;
+  .word_bg {
+    position: absolute;
+    width: 610px;
+    height: 358px;
+    right: 120px;
+    top: 200px;
+    background: url(../../assets/images/home.svg) no-repeat center;
+    background-size: contain;
+  }
+  .slogin {
+    position: absolute;
+    left: 140px;
+    top: 200px;
+    .main_slogin {
+      width: 483px;
+      height: 140px;
+      font-size: 60px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 1);
+      line-height: 70px;
+      margin-bottom: 20px;
+    }
+    .go_tips {
+      height: 50px;
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 1);
+      line-height: 50px;
+      margin-bottom: 60px;
+    }
+    .get_start_btn {
+      border: none;
+      width: 140px;
+      height: 40px;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 25px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      font-weight: 900;
+      color: @theme-color;
+    }
+  }
+}
+</style>

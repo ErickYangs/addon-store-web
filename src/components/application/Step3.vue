@@ -33,7 +33,7 @@ export default {
     async getLinkList() {
       try {
         let result = await this.$http.Addon.queryAppAddonStatus(this.appId)
-        console.log(result)
+        // console.log(result)
         if (result.desc === 'SUCCESS') {
           result.result.map((item, index) => {
             if (item.register) {

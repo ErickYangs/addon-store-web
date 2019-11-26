@@ -49,7 +49,7 @@ export default {
           userName: this.accountName
         }
         let res = await this.$http.Account.postRegister(params)
-        console.log('res', res)
+        // console.log('res', res)
         if (res.desc !== 'SUCCESS') {
           this.$message.error(res.desc)
           return false
@@ -69,7 +69,7 @@ export default {
     async checkResult() {
       try {
         let res = await this.$http.Account.checkRegister(this.dataId)
-        // console.log('checkout', res)
+        // // console.log('checkout', res)
         if (res.desc !== 'SUCCESS') {
           clearInterval(this.checkTimer)
           this.$message.error('Sign Up Fail!')
@@ -110,7 +110,7 @@ export default {
 
 <style lang="less">
 .register_layout {
-  height: 100%;
+  height: 530px;
   display: flex;
   align-items: center;
   justify-content: center;

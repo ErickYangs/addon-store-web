@@ -26,7 +26,7 @@
         <div class="lib_item_add_tips hover6">Add New App</div>
       </div>
       <div
-        @click="$router.push({ name: 'ApplicationDetail' })"
+        @click="$router.push({ name: 'ApplicationDetail', query: { id: item.id } })"
         class="app_item hover6"
         v-for="(item, index) in appList"
         :key="index"
@@ -36,7 +36,7 @@
           <i class="down_w"></i>
         </div>
         <div class="app_msg">
-          <img src="" alt="" />
+          <img src="../../assets/images/app_icon.svg" alt="" />
           <div class="app_name single_ellipsis hover6">{{ item.appName }}</div>
         </div>
         <div class="btn_wrap">
@@ -68,7 +68,7 @@ export default {
         let result = await this.$http.Application.queryAppList(
           this.account.ontid
         )
-        console.log('app list', result)
+        // console.log('app list', result)
         if (result.desc !== 'SUCCESS') return false
         this.appList = result.result
       } catch (error) {
@@ -86,7 +86,7 @@ export default {
         okType: 'success',
         cancelText: 'No',
         onOk() {
-          console.log(_self)
+          // console.log(_self)
           _self.$router.push({ name: 'CreateApp' })
         },
         onCancel() {
@@ -239,7 +239,6 @@ export default {
           display: block;
           width: 40px;
           height: 40px;
-          background: tomato;
           border-radius: 5px;
           overflow: hidden;
         }
@@ -275,6 +274,7 @@ export default {
       }
       &:hover {
         background: @theme-color;
+        box-shadow: 0 0 6px @theme-color;
         .add_download_wrap {
           i.down_b {
             display: none;

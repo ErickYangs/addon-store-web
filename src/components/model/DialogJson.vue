@@ -63,7 +63,7 @@ export default {
       this.visible = false
     },
     changes(a) {
-      console.log(a)
+      // console.log(a)
     },
     onError() {}
   },

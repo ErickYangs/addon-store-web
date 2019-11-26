@@ -57,6 +57,10 @@ Vue.use(Row)
 Vue.use(Steps)
 Vue.use(Table)
 
+import { Table as ElTable, TableColumn as ElTableColumn } from 'element-ui'
+Vue.use(ElTable)
+Vue.use(ElTableColumn)
+
 // http api
 import http from '@/api'
 Vue.prototype.$http = http

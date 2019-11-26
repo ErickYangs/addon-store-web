@@ -23,7 +23,7 @@
       <div class="select_title">添加可以选择SDK插件</div>
       <div class="app_sdk_layout">
         <div class="sdk_ele" v-for="(item, index) in plgindata" :key="index">
-          <img src="" alt="" />
+          <img src="../../assets/images/sdk_icon.svg" alt="" />
         </div>
         <div @click="openDialog" class="sdk_ele add_btns hover6">
           <i class="add_b"></i>
@@ -83,7 +83,7 @@ export default {
       this.$refs.dialogRadil.showModal()
     },
     handlerSelectData(data) {
-      console.log(data)
+      // console.log(data)
       const { commonAddonIds, customAddonIds } = data
       this.commonAddonIds = commonAddonIds
       this.customAddonIds = customAddonIds
@@ -107,7 +107,7 @@ export default {
         customAddonIds: [...this.customAddonIds],
         ontid: this.account.ontid
       }
-      console.log('params', params)
+      // console.log('params', params)
       try {
         this.loading = true
         let result = await this.$http.Application.registerApp(params)
@@ -235,7 +235,6 @@ export default {
           display: block;
           width: 100%;
           height: 100%;
-          background: tomato;
         }
       }
       .add_btns {

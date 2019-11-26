@@ -85,7 +85,7 @@ export default {
     async getAddonDetail() {
       try {
         let result = await this.$http.Addon.queryCommonAddonDetail(this.appId)
-        // console.log('add-on detail', result)
+        // // console.log('add-on detail', result)
         if (result.desc !== 'SUCCESS') return false
         this.addonDetail = result.result
         this.jsonConfig = JSON.parse(this.addonDetail.template)
@@ -97,13 +97,13 @@ export default {
       window.open(url)
     },
     changes(a) {
-      console.log(a)
+      // console.log(a)
     },
     onError() {}
   },
   created() {
     this.appId = this.$route.query.id
-    console.log(this.appId)
+    // console.log(this.appId)
     this.getAddonDetail()
   },
   filters: {
@@ -111,7 +111,7 @@ export default {
       if (!val) return ''
       var objStr = JSON.stringify(val, null, 4)
       let html = objStr.replace(/\n/g, '<br>').replace(/\s/g, ' ')
-      console.log(html)
+      // console.log(html)
       return html
     }
     // return moment(time).format('LLL')
