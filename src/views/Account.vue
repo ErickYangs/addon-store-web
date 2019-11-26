@@ -180,7 +180,7 @@ export default {
       position: relative;
       .account_msg {
         width: 460px;
-        height: 530px;
+        min-height: 530px;
         background: rgba(255, 255, 255, 1);
         box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.05);
         border-radius: 4px;

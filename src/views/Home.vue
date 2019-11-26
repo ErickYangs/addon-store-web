@@ -27,7 +27,7 @@
           <a-menu-item key="Dashboard">
             <div class="sub_wrap">
               <i class="all_icon"></i>
-              <span>All</span>
+              <span>home</span>
             </div>
           </a-menu-item>
           <!-- <a-sub-menu key="ddxf">
@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     handlerClick(option) {
-      console.log(option)
+      // console.log(option)
       this.$router.push({ name: option.key })
     }
   },
@@ -148,7 +148,7 @@ export default {
   },
   watch: {
     openKeys(val) {
-      console.log('openKeys', val)
+      // console.log('openKeys', val)
     }
   },
   async created() {
@@ -222,7 +222,7 @@ export default {
             transition: all 0.6s;
           }
           .all_icon {
-            background: url(../assets/images/all_w.svg) no-repeat;
+            background: url(../assets/images/homeIcon_w.svg) no-repeat;
             background-size: contain;
           }
           .ddxf_icon {
@@ -240,7 +240,7 @@ export default {
           background: #fff;
 
           i.all_icon {
-            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
             background-size: contain !important;
           }
           i.ddxf_icon {
@@ -262,7 +262,7 @@ export default {
           background: #fff;
           border-radius: 15px;
           i.all_icon {
-            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
             background-size: contain !important;
           }
           i.ddxf_icon {
@@ -379,6 +379,7 @@ export default {
         width: 26px;
         height: 26px !important;
         line-height: 26px;
+        background: #0076df;
         span {
           display: none;
         }
@@ -395,11 +396,16 @@ export default {
           }
         }
       }
+      .ant-menu-item.ant-menu-item-selected {
+        .sub_wrap {
+          background: #fff;
+        }
+      }
       .ant-menu-item.ant-menu-item-active {
         .sub_wrap {
           background: #fff;
           i.all_icon {
-            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
             background-size: contain !important;
           }
           i.ddxf_icon {
@@ -480,7 +486,7 @@ export default {
         background: #fff;
         border-radius: 15px;
         i.all_icon {
-          background: url(../assets/images/all_b.svg) no-repeat !important;
+          background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
           background-size: contain !important;
         }
         i.ddxf_icon {

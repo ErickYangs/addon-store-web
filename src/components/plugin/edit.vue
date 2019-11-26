@@ -53,8 +53,10 @@
             ></textarea>
           </div>
         </div>
+        <!-- <a-button @click="updateAddon">Update</a-button> -->
         <div class="_btn_wrap">
-          <a-button @click="updateAddon">Update</a-button>
+          <a-button class="create_btn"  @click="updateAddon">Update</a-button>
+          <span class="cancel_btn" @click="$router.go(-1)">取消</span>
         </div>
       </div>
       <div class="json_area"></div>
@@ -97,7 +99,7 @@ export default {
     async getCustomAddonDetail() {
       try {
         let result = await this.$http.Addon.queryCustomAddonDetail(this.appId)
-        console.log('custom add-on detail', result)
+        // console.log('custom add-on detail', result)
         if (result.desc !== 'SUCCESS') return false
         this.appNews = result.result
         this.appNews.createTime = this.$utils.formatTime(
@@ -120,7 +122,7 @@ export default {
       }
       try {
         let result = await this.$http.Addon.updateCustomAddon(params)
-        console.log('update add-on result', result)
+        // console.log('update add-on result', result)
         if (result.desc !== 'SUCCESS' || result.result !== 'SUCCESS') {
           this.$message.error('Update Add-on Fail, Please Try Again')
           return false
@@ -134,7 +136,7 @@ export default {
   },
   created() {
     this.appId = this.$route.query.id
-    console.log(this.appId)
+    // console.log(this.appId)
     this.getCustomAddonDetail()
   }
 }
@@ -311,7 +313,12 @@ export default {
     }
     ._btn_wrap {
       margin-top: 60px;
-      button {
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      button.create_btn {
         border: none;
         display: block;
         width: 120px;
@@ -331,6 +338,13 @@ export default {
         &:hover {
           opacity: 0.8;
         }
+      }
+      .cancel_btn {
+        margin-top: 20px;
+        text-decoration: underline;
+        color: @theme-color;
+        font-size: @14px;
+        cursor: pointer;
       }
     }
     .app_wif_wrap {

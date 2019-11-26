@@ -64,7 +64,7 @@ export function queryAddonList(id) {
  */
 export function deleteAddon(appId, addonId) {
   return request({
-    url: `/api/v1/app/addon/${appId}/${addonId}`,
+    url: `/api/v1/addon/${appId}/${addonId}`,
     method: 'delete'
   })
 }

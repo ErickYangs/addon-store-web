@@ -35,7 +35,8 @@
           </div>
         </div>
         <div class="_btn_wrap">
-          <a-button @click="createAddon">Create</a-button>
+          <a-button class="create_btn" @click="createAddon">Create</a-button>
+          <span class="cancel_btn" @click="$router.go(-1)">返回</span>
         </div>
       </div>
       <div class="json_area"></div>
@@ -56,7 +57,8 @@ export default {
       appNews: {
         appName: '',
         appDesc: ''
-      }
+      },
+      size: 'small'
     }
   },
   methods: {
@@ -72,14 +74,14 @@ export default {
       }
       try {
         let result = await this.$http.Addon.createCustomAdd(params)
-        // console.log('create custom add-on result', result)
+        // // console.log('create custom add-on result', result)
         if (result.desc !== 'SUCCESS' || result.result !== 'SUCCESS') {
           this.$message.error('Create Add-on Fail, Please Try Again')
           return false
         }
         this.$message.success('Create Add-on Success!')
         await this.$store.dispatch('login/getCustomAddon')
-        this.$router.push({name: 'PluginLayout'})
+        this.$router.push({ name: 'PluginLayout' })
       } catch (error) {
         this.$message.error('Create Add-on Fail!')
         throw error
@@ -260,7 +262,12 @@ export default {
     }
     ._btn_wrap {
       margin-top: 60px;
-      button {
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      button.create_btn {
         border: none;
         display: block;
         width: 120px;
@@ -280,6 +287,13 @@ export default {
         &:hover {
           opacity: 0.8;
         }
+      }
+      .cancel_btn {
+        margin-top: 20px;
+        text-decoration: underline;
+        color: @theme-color;
+        font-size: @14px;
+        cursor: pointer;
       }
     }
   }

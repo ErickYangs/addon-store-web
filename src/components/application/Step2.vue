@@ -131,15 +131,15 @@ export default {
       return record.id
     },
     onSelectChange(selectedRowKeys) {
-      console.log('selectedRowKeys changed: ', selectedRowKeys)
+      // console.log('selectedRowKeys changed: ', selectedRowKeys)
       this.selectedRowKeys = selectedRowKeys
     },
     editConfig(data) {
-      console.log(data)
+      // console.log(data)
       this.getAddonInfo(data)
     },
     HandlerJsonConfig(data) {
-      console.log('json config', data)
+      // console.log('json config', data)
       this.tableData.map((item, index) => {
         if (item.id === this.currentData.id) {
           item.template = JSON.stringify(data)
@@ -151,7 +151,7 @@ export default {
     async getAddonInfo(appId) {
       try {
         let result = await this.$http.Addon.queryCommonAddonDetail(appId)
-        // console.log('add-on detail', result)
+        // // console.log('add-on detail', result)
         if (result.desc !== 'SUCCESS') return false
         this.currentData = result.result
         this.currentData.jsonConfig = JSON.parse(this.currentData.template)
@@ -171,11 +171,11 @@ export default {
       })
       this.dataParams.addonConfig = [...confarr]
       this.dataParams.id = this.appNews.id
-      console.log('this.dataParams', this.dataParams)
+      // console.log('this.dataParams', this.dataParams)
       try {
         this.loading = true
         let result = await this.$http.Application.editApp(this.dataParams)
-        console.log('result config', result)
+        // console.log('result config', result)
         if (result.desc === 'SUCCESS' || result.result === 'SUCCESS') {
           this.loading = false
           Store.removeNews('undoneInfo')

@@ -80,7 +80,7 @@ export default {
       this.visible = true
     },
     handleOk(e) {
-      console.log(e)
+      // console.log(e)
       this.$emit('handlerSelectData', {
         commonAddonIds: this.commonAddonIds,
         customAddonIds: this.customAddonIds
@@ -91,11 +91,11 @@ export default {
       this.visible = false
     },
     onChangePlug(checkedValues) {
-      console.log('checked1 = ', checkedValues)
+      // console.log('checked1 = ', checkedValues)
       this.commonAddonIds = [...checkedValues]
     },
     onChangeCustom(checkedValues) {
-      console.log('checked2 = ', checkedValues)
+      // console.log('checked2 = ', checkedValues)
       this.customAddonIds = [...checkedValues]
     }
   }
