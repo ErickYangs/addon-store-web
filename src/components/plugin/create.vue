@@ -3,15 +3,15 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>Plug-in library</span>
+          <span>{{ $t('plugin.main_title1') }}</span>
         </div>
         <div class="bread_item">
-          <span>Add New Addon</span>
+          <span>{{ $t('plugin.addBtn') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">Add New Addon</div>
+          <div class="main_sub_title">{{ $t('plugin.addBtn') }}</div>
         </div>
       </div>
     </div>
@@ -19,24 +19,28 @@
       <div class="addon_message">
         <div class="form_area">
           <div class="form_menu_item">
-            <div class="label_name">Add-on Name</div>
+            <div class="label_name">{{ $t('plugin.addonDetail.addName') }}</div>
             <input
               v-model="appNews.appName"
               type="text"
-              placeholder="Please Input Add-on Name"
+              placeholder="Please Enter Add-on Name"
             />
           </div>
           <div class="form_menu_item">
-            <div class="label_name">Add-on Description</div>
+            <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
             <textarea
               v-model="appNews.appDesc"
-              placeholder="Please Input Add-on Description"
+              placeholder="Please Enter Add-on Description"
             ></textarea>
           </div>
         </div>
         <div class="_btn_wrap">
-          <a-button class="create_btn" @click="createAddon">Create</a-button>
-          <span class="cancel_btn" @click="$router.go(-1)">返回</span>
+          <a-button class="create_btn" @click="createAddon">{{
+            $t('common.confirm')
+          }}</a-button>
+          <span class="cancel_btn" @click="$router.go(-1)">{{
+            $t('common.back')
+          }}</span>
         </div>
       </div>
       <div class="json_area"></div>
@@ -125,7 +129,7 @@ export default {
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
-      width: 300px;
+      width: 400px;
       margin-bottom: 40px;
       .main_sub_title {
         font-weight: 900;

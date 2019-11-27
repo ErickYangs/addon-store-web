@@ -3,15 +3,15 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>Plug-in library</span>
+          <span>{{ $t('plugin.main_title1') }}</span>
         </div>
         <div class="bread_item">
-          <span>Edit Addon</span>
+          <span>{{ $t('plugin.edit.main_title1') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">Edit Addon</div>
+          <div class="main_sub_title">{{ $t('plugin.edit.main_title1') }}</div>
         </div>
       </div>
     </div>
@@ -27,7 +27,9 @@
             />
           </div>
           <div class="form_menu_item">
-            <div class="label_name">Add-on Create Time</div>
+            <div class="label_name">
+              {{ $t('plugin.addonDetail.addCreateTime') }}
+            </div>
             <input v-model="appNews.createTime" type="text" disabled />
           </div>
           <!-- <div class="form_menu_item">
@@ -46,7 +48,7 @@
             <input v-model="appNews.domain" type="text" disabled />
           </div>-->
           <div class="form_menu_item">
-            <div class="label_name">Add-on Description</div>
+            <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
             <textarea
               v-model="appNews.description"
               placeholder="Please Input Add-on Description"
@@ -55,8 +57,12 @@
         </div>
         <!-- <a-button @click="updateAddon">Update</a-button> -->
         <div class="_btn_wrap">
-          <a-button class="create_btn"  @click="updateAddon">Update</a-button>
-          <span class="cancel_btn" @click="$router.go(-1)">取消</span>
+          <a-button class="create_btn" @click="updateAddon">{{
+            $t('common.update')
+          }}</a-button>
+          <span class="cancel_btn" @click="$router.go(-1)">{{
+            $t('common.cancel')
+          }}</span>
         </div>
       </div>
       <div class="json_area"></div>
@@ -128,7 +134,7 @@ export default {
           return false
         }
         this.$message.success('Update Add-on Success!')
-        this.$router.push({name: 'PluginLayout'})
+        this.$router.push({ name: 'PluginLayout' })
       } catch (error) {
         throw error
       }

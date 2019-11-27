@@ -3,15 +3,15 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>App</span>
+          <span>{{ $t('application.lg_title') }}</span>
         </div>
         <div class="bread_item">
-          <span>Particulars</span>
+          <span>{{ $t('application.lg_detail') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">Particulars</div>
+          <div class="main_sub_title">{{ $t('application.lg_detail') }}</div>
           <div class="main_sub_desc">
             DDXF is a decentralized data exchange and collaboration framework.
             DDXF is able to tokenize any valuable data and provides data
@@ -58,7 +58,7 @@
     <div class="app_info_wrap">
       <div class="form_area">
         <div class="form_menu_item">
-          <div class="label_name">Application Name</div>
+          <div class="label_name">{{ $t('application.details.name') }}</div>
           <input
             v-model="appNews.appName"
             type="text"
@@ -67,16 +67,16 @@
           />
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Application ONT ID</div>
+          <div class="label_name">{{ $t('application.details.ontid') }}</div>
           <input v-model="appNews.appOntid" type="text" disabled />
         </div>
         <div class="form_menu_item wif_tips_area">
           <div class="label_name">
-            Application Wif
+            {{ $t('application.details.wif') }}
             <div class="wif_tips">
               <span class="tips_icon"></span>
               <div class="tips_content">
-                节点质押是用户将ONT质押到节点钟参与本体网络治理的行为，质押ONT是通过智能合约实现的，除了质押人，其他任何人无权触碰被质押的ONT，因此只要不丢失您的钱包私钥，您的ONT始终是安全，通过参与质押，您可以获取本体网络手续费分成奖励和基金会节点奖励
+                {{ $t('application.details.wifTips') }}
               </div>
             </div>
           </div>
@@ -90,17 +90,19 @@
           </div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Application Domain</div>
+          <div class="label_name">{{ $t('application.details.domain') }}</div>
           <input v-model="appNews.domain" type="text" disabled />
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Application CreateTime</div>
+          <div class="label_name">
+            {{ $t('application.details.CreateTime') }}
+          </div>
           <div class="createTime_">
             {{ $utils.formatTime(appNews.createTime) }}
           </div>
         </div>
         <div class="form_menu_item desc_area">
-          <div class="label_name">Application Description</div>
+          <div class="label_name">{{ $t('application.details.desc') }}</div>
           <textarea
             v-model="appNews.description"
             placeholder="Please Input Application Description"
@@ -118,12 +120,16 @@
               @select-all="handleSelectAll"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
-              <el-table-column label="Addon Name" width="225">
+              <el-table-column label="Add-ons" width="225">
                 <template slot-scope="scope">{{
                   scope.row.addonName
                 }}</template>
               </el-table-column>
-              <el-table-column label="Action" show-overflow-tooltip width="120">
+              <el-table-column
+                label="Settings"
+                show-overflow-tooltip
+                width="120"
+              >
                 <template slot-scope="scope">
                   <i
                     v-if="scope.row.register"
@@ -143,7 +149,7 @@
         </div>
       </div>
       <div class="link_body">
-        <div class="link_title">sdk下载安装list</div>
+        <div class="link_title">{{ $t('application.addApp.downBtn') }}</div>
         <div class="link_cont">
           <span
             class="hover6"
@@ -155,9 +161,9 @@
         </div>
       </div>
       <div>
-        <a-button @click="putAppDetail" :loading="loading" class="update_btn"
-          >Update</a-button
-        >
+        <a-button @click="putAppDetail" :loading="loading" class="update_btn">{{
+          $t('common.update')
+        }}</a-button>
       </div>
       <div class="policy hover6">
         I agree to the privacy policy

@@ -4,23 +4,23 @@
       <div class="app_form">
         <div class="form_area">
           <div class="form_menu_item">
-            <div class="label_name">Application Name</div>
+            <div class="label_name">{{$t('application.details.name')}}</div>
             <input
               v-model="appNews.appName"
               type="text"
-              placeholder="Please Input Application Name"
+              placeholder="Enter application name"
             />
           </div>
           <div class="form_menu_item">
-            <div class="label_name">Application Description</div>
+            <div class="label_name">{{$t('application.details.desc')}}</div>
             <textarea
               v-model="appNews.description"
-              placeholder="Please Input Application Description"
+              placeholder="Enter application description"
             ></textarea>
           </div>
         </div>
       </div>
-      <div class="select_title">添加可以选择SDK插件</div>
+      <div class="select_title">{{$t('application.addApp.selectaddon')}}</div>
       <div class="app_sdk_layout">
         <div class="sdk_ele" v-for="(item, index) in plgindata" :key="index">
           <img src="../../assets/images/sdk_icon.svg" alt="" />
@@ -37,7 +37,7 @@
       class="next_btn hover6"
       @click="create"
     >
-      Next
+      {{$t('common.next')}}
     </a-button>
     <dialog-div
       ref="dialogRadil"

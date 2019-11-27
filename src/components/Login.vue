@@ -2,15 +2,15 @@
   <div class="login_layout">
     <div class="title"></div>
     <div class="tips _tps_top">
-      Already have Account.
-      <span @click="$router.push({ path: 'register' })">Sign up.</span>
+      {{$t('signin.tips')}}
+      <span @click="$router.push({ path: 'register' })">{{$t('signin.register')}}</span>
     </div>
     <div class="qrcode">
       <img :src="imgUrl" alt />
     </div>
     <div class="tips _tps_btm">
-      Log in using
-      <span>Authenticator</span> scan code
+      {{$t('signin.sub_title1')}}
+      <!-- <span>{{$t('signin.sub_title2')}}</span> -->
     </div>
     <div class="download_box">
       <div class="media_btn hoveraction" @click="openNewPage(appstoreUrl)">

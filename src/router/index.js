@@ -144,7 +144,7 @@ router.beforeEach(async (to, from, next) => {
   
   // try {
   //   let res = await CheckToken({ token })
-  //   console.log('token res', res)
+  //   // console.log('token res', res)
 
   //   let errorCode = res.error
   //   if (errorCode != 0) {
@@ -166,8 +166,8 @@ router.beforeEach(async (to, from, next) => {
   //     return false
   //   }
   //   Storage.setToken(res.result.token)
-  //   Storage.setNews('ontid', res.result.ontid)
-  //   Storage.setNews('userName', res.result.userName)
+  //   // Storage.setNews('ontid', res.result.ontid)
+  //   // Storage.setNews('userName', res.result.userName)
   //   next()
   // } catch (error) {
   //   Storage.removeToken()

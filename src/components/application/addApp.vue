@@ -3,15 +3,15 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>App</span>
+          <span>{{ $t('application.lg_title') }}</span>
         </div>
         <div class="bread_item">
-          <span>Add New App</span>
+          <span>{{ $t('application.create') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">Add New App</div>
+          <div class="main_sub_title">{{ stepTips }}</div>
           <div class="main_sub_desc">
             DDXF is a decentralized data exchange and collaboration framework.
             DDXF is able to tokenize any valuable data and provides data
@@ -45,7 +45,25 @@ export default {
   computed: {
     ...mapState({
       currentStep: state => state.createApp.currentStep
-    })
+    }),
+    stepTips() {
+      let str = ''
+      switch (this.currentStep) {
+        case 0:
+          str = this.$t('application.addApp.step1')
+          break
+        case 1:
+          str = this.$t('application.addApp.step2')
+          break
+        case 2:
+          str = this.$t('application.addApp.step3')
+          break
+        default:
+          str = this.$t('application.addApp.step1')
+          break
+      }
+      return str
+    }
   },
   components: { sdktableDiv, step1AddAppDiv, step2EditAppDiv, step3LinkDiv },
   data() {
