@@ -2,13 +2,13 @@
   <div class="register_layout">
     <div class="title"></div>
     <div class="tips _tps_top">
-      Already have Account.
-      <span @click="$router.push({ path: 'login' })">Sign in.</span>
+      {{$t('signup.tips1')}}
+      <span @click="$router.push({ path: 'login' })">{{$t('signup.signin')}}</span>
     </div>
     <div class="center_box">
       <div class="acc_bx" v-if="!isQrcode">
         <div class="input_area">
-          <input @keyup.enter="sendName" placeholder="Create a new account" v-model="accountName" />
+          <input @keyup.enter="sendName" :placeholder="langTip.placehodler" v-model="accountName" />
         </div>
         <div class="btn" @click="sendName">Next</div>
       </div>
@@ -29,6 +29,9 @@ import * as Storage from '@/utils/auth'
 export default {
   data() {
     return {
+      langTip: {
+        placehodler: this.$t('signup.createTip')
+      },
       isQrcode: false,
       applink: 'https://authenticator.ont.io/',
       accountName: '',

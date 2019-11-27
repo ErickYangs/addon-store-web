@@ -14,7 +14,7 @@
           @click="handleOk"
           class="next_btn"
         >
-          Next
+          {{$t('common.confirm')}}
         </a-button>
       </template>
       <div class="json_dialog_content">

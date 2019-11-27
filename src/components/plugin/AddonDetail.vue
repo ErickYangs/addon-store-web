@@ -3,7 +3,7 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>Plug-in library</span>
+          <span>{{ $t('plugin.main_title1') }}</span>
         </div>
         <div class="bread_item">
           <span>Add-on</span>
@@ -11,7 +11,7 @@
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">Add New Addon</div>
+          <div class="main_sub_title">{{ $t('plugin.main_title1') }}</div>
           <div class="main_sub_desc">
             DDXF is a decentralized data exchange and collaboration framework.
             DDXF is able to tokenize any valuable data and provides data
@@ -23,21 +23,21 @@
     <div class="plugin_detail_wrap">
       <div class="form_area">
         <div class="form_menu_item">
-          <div class="label_name">Add-on Name</div>
+          <div class="label_name">{{ $t('plugin.addonDetail.addName') }}</div>
           <div class="app_wif_wrap">{{ addonDetail.addonName }}</div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Add-on Description</div>
+          <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
           <div class="app_wif_wrap no_line">{{ addonDetail.description }}</div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Add-on CreateTime</div>
+          <div class="label_name">{{ $t('plugin.addonDetail.addCreateTime') }}</div>
           <div class="app_wif_wrap">
             {{ $utils.formatTime(addonDetail.createTime) }}
           </div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Add-on SDK Link</div>
+          <div class="label_name">{{ $t('plugin.addonDetail.addonLink') }}</div>
           <div class="app_wif_wrap link no_line">
             <span class="hover6" @click="openLink(addonDetail.sdkUrl)"
               >SDK Download Link</span
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Add-on Template</div>
+          <div class="label_name">{{ $t('plugin.addonDetail.addonTep') }}</div>
           <div class="app_wif_wrap no_line" id="templateid">
             <v-jsoneditor
               ref="editor"

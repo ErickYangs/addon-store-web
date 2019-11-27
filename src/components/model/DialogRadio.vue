@@ -3,7 +3,7 @@
     <a-modal
       wrapClassName="out_dialog"
       width="890px"
-      title="Addon Name"
+      :title="title"
       v-model="visible"
       @ok="handleOk"
       :centered="centered"
@@ -15,7 +15,7 @@
           @click="handleOk"
           class="next_btn"
         >
-          Next
+          {{$t('common.confirm')}}
         </a-button>
       </template>
       <div class="dialog_content">
@@ -72,7 +72,8 @@ export default {
       loading: true,
       centered: true,
       commonAddonIds: [],
-      customAddonIds: []
+      customAddonIds: [],
+      title: this.$t('dialog.addTips')
     }
   },
   methods: {

@@ -1,21 +1,21 @@
 <template>
   <div class="step2">
     <div class="step2_title">
-      配置专属sdk
+      {{ $t('application.addApp.config') }}
     </div>
     <div class="sdk_area">
       <div class="form_area">
         <div class="form_menu_item">
-          <div class="label_name">Application ONT ID</div>
+          <div class="label_name">{{ $t('application.details.ontid') }}</div>
           <input
             v-model="appNews.appOntid"
             type="text"
-            placeholder="Please Input Application ONT ID"
+            placeholder="Please Enter Application ONT ID"
             disabled
           />
         </div>
         <div class="form_menu_item">
-          <div class="label_name">Application Wif</div>
+          <div class="label_name">{{ $t('application.details.wif') }}</div>
           <div class="app_wif_wrap" v-if="wifShow">
             {{ appNews.wif }}
             <span class="close" @click="wifShow = false"></span>
@@ -26,11 +26,11 @@
           </div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">domain</div>
+          <div class="label_name">{{ $t('application.details.domain') }}</div>
           <input
             v-model="appNews.domain"
             type="text"
-            placeholder="Please Input domain"
+            placeholder="Please Enter domain"
             disabled
           />
         </div>
@@ -60,7 +60,7 @@
       class="next_btn hover6"
       @click="handlerUpdate"
     >
-      Next
+      {{ $t('application.addApp.sdkBtn') }}
     </a-button>
     <JsonCofig-div
       ref="jsonDialog"
@@ -76,12 +76,12 @@ import * as Store from '@/utils/auth'
 import JsonCofigDiv from '@/components/model/DialogJson'
 const columns = [
   {
-    title: 'Addon Name',
+    title: 'Add-ons',
     dataIndex: 'addonName',
     scopedSlots: { customRender: 'addonName' }
   },
   {
-    title: 'Action',
+    title: 'Settings',
     dataIndex: 'action',
     width: 200,
     align: 'center',

@@ -28,7 +28,7 @@
           <a-menu-item key="Dashboard">
             <div class="sub_wrap">
               <i class="all_icon"></i>
-              <span>home</span>
+              <span>{{ $t('leftMenu.home') }}</span>
             </div>
           </a-menu-item>
           <!-- <a-sub-menu key="ddxf">
@@ -43,13 +43,13 @@
           <a-menu-item key="Plugin">
             <div class="sub_wrap">
               <i class="ddxf_icon"></i>
-              <span>插件库</span>
+              <span>{{ $t('leftMenu.addon') }}</span>
             </div>
           </a-menu-item>
           <a-menu-item key="Application">
             <div class="sub_wrap">
               <i class="app_icon"></i>
-              <span>App库</span>
+              <span>{{ $t('leftMenu.app') }}</span>
             </div>
           </a-menu-item>
         </a-menu>

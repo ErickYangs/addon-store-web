@@ -3,13 +3,18 @@
     <div class="word_bg"></div>
     <div class="slogin">
       <div class="main_slogin">
-        Create a project Auth Saas
+        <p>
+          {{ $t('dashboard.main_title') }}
+        </p>
+        <p>
+          {{ $t('dashboard.sass') }}
+        </p>
       </div>
-      <div class="go_tips">Let’s go Auth Saas.</div>
+      <div class="go_tips">{{ $t('dashboard.letgo') }}</div>
       <a-button
         class="get_start_btn"
         @click="$router.push({ name: 'Application' })"
-        >Get Started</a-button
+        >{{ $t('dashboard.start') }}</a-button
       >
     </div>
   </div>
@@ -36,13 +41,17 @@
     left: 140px;
     top: 200px;
     .main_slogin {
-      width: 483px;
-      height: 140px;
+      // height: 140px;
       font-size: 60px;
-      font-weight: 900;
-      color: rgba(255, 255, 255, 1);
       line-height: 70px;
       margin-bottom: 20px;
+      p {
+        font-weight: 900;
+        color: rgba(255, 255, 255, 1);
+        &:nth-of-type(1) {
+          width: 483px;
+        }
+      }
     }
     .go_tips {
       height: 50px;

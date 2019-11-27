@@ -18,7 +18,7 @@
           <span>{{ account.username }}</span>
         </a-menu-item>
         <a-menu-item>
-          <span @click="logOut">Drop out</span>
+          <span @click="logOut">{{$t('common.out')}}</span>
         </a-menu-item>
       </a-menu>
     </a-dropdown>

@@ -2,10 +2,10 @@
   <div class="step3">
     <div class="download_sdk">
       <div class="down_title">
-        已为你生成add的专属sdk插件
+        {{ $t('application.addApp.sub_tips') }}
       </div>
       <div class="link_body">
-        <div class="link_title">sdk下载安装lis</div>
+        <div class="link_title">{{ $t('application.addApp.downBtn') }}</div>
         <div class="link_cont">
           <span
             class="hover6"
@@ -13,6 +13,13 @@
             v-for="(item, index) in linkList"
             :key="index"
             >{{ item.addonName }}</span
+          >
+        </div>
+        <div>
+          <a-button
+            @click="$router.push({ name: 'Application' })"
+            class="next_btn hover6"
+            >{{ $t('common.complete') }}</a-button
           >
         </div>
       </div>
@@ -87,6 +94,26 @@ export default {
           opacity: 0.8;
         }
       }
+    }
+  }
+  .next_btn {
+    border: none;
+    margin-top: 60px;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(
+      90deg,
+      rgba(11, 134, 240, 1) 0%,
+      rgba(60, 204, 251, 1) 100%
+    );
+    border-radius: 20px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: @14px;
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
