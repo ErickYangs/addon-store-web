@@ -10,7 +10,7 @@
         <div class="input_area">
           <input @keyup.enter="sendName" :placeholder="langTip.placehodler" v-model="accountName" />
         </div>
-        <div class="btn" @click="sendName">Next</div>
+        <div class="btn" @click="sendName">{{$t('signup.next')}}</div>
       </div>
       <div class="qrcode" v-else>
         <img :src="url" alt />

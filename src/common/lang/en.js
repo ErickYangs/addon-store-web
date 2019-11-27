@@ -2,13 +2,14 @@ export default {
   signin: {
     tips: 'No account yet?',
     register: 'Create one now!',
-    sub_title1: 'Sign in with ',
-    sub_title2: 'Ontology Authenticator'
+    sub_title1: 'Sign in with Ontology Authenticator',
+    // sub_title2: 'Ontology Authenticator'
   },
   signup: {
     tips1: 'Have an account?',
     signin: 'Sign in here!',
-    createTip: 'Enter account name'
+    createTip: 'Enter account name',
+    next: 'Next'
   },
   pageNot: {
     main_title: 'Oops. This page seems to be missing…',
@@ -35,9 +36,12 @@ export default {
   leftMenu: {
     home: 'Home',
     app: 'Apps',
-    addon: 'Add-ons'
+    addon: 'Add-on'
   },
   application: {
+    lg_title: 'App Center',
+    create: 'Create New App',
+    lg_detail: 'Details',
     details: {
       ontid: 'Application ONT ID',
       wif: 'Application ONT ID WIF',
@@ -73,6 +77,7 @@ export default {
     },
     edit: {
       main_title1: 'Edit Addon'
-    }
+    },
+    plgDetail: 'Add-on'
   }
 }

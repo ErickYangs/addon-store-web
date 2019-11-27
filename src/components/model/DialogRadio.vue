@@ -20,7 +20,7 @@
       </template>
       <div class="dialog_content">
         <div class="plugin_onwer">
-          <div class="onwer_title">Plug-in</div>
+          <div class="onwer_title">{{ $t('plugin.main_title2') }}</div>
           <div class="plg_wrap">
             <a-checkbox-group @change="onChangePlug">
               <a-checkbox
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="plugin_onwer">
-          <div class="onwer_title">Custom Plug-in</div>
+          <div class="onwer_title">{{ $t('plugin.main_title3') }}</div>
           <div class="plg_wrap">
             <a-checkbox-group @change="onChangeCustom">
               <a-checkbox

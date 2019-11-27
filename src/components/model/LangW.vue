@@ -59,7 +59,7 @@ export default {
   width: 100%;
   height: 100%;
   .ant-dropdown-link {
-      border-radius: 15px;
+    border-radius: 15px;
     display: block;
     width: 100%;
     height: 100%;
@@ -70,7 +70,7 @@ export default {
     line-height: 30px;
     padding-right: 26px;
     position: relative;
-    border: 1px solid rgba(242,242,242,1);
+    border: 1px solid rgba(242, 242, 242, 1);
     &::after {
       content: '';
       width: 6px;
@@ -84,10 +84,10 @@ export default {
     }
   }
   /deep/ .ant-dropdown {
-      top: 58px !important;
+    top: 58px !important;
     //
     ul {
-      transform: translateX(-38px);
+      transform: translateX(-26px);
       padding: 0;
       background: rgba(255, 255, 255, 1);
       box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);

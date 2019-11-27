@@ -6,7 +6,7 @@
           <span>{{ $t('plugin.main_title1') }}</span>
         </div>
         <div class="bread_item">
-          <span>Add-on</span>
+          <span>{{ $t('plugin.plgDetail') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">

@@ -3,15 +3,15 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>App</span>
+          <span>{{ $t('application.lg_title') }}</span>
         </div>
         <div class="bread_item">
-          <span>Add New App</span>
+          <span>{{ $t('application.create') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">{{stepTips}}</div>
+          <div class="main_sub_title">{{ stepTips }}</div>
           <div class="main_sub_desc">
             DDXF is a decentralized data exchange and collaboration framework.
             DDXF is able to tokenize any valuable data and provides data

@@ -10,7 +10,9 @@
           {{ $t('dashboard.sass') }}
         </p>
       </div>
-      <div class="go_tips">{{ $t('dashboard.letgo') }}</div>
+      <div class="go_tips" v-if="$i18n.locale === 'en'">
+        {{ $t('dashboard.letgo') }}
+      </div>
       <a-button
         class="get_start_btn"
         @click="$router.push({ name: 'Application' })"
@@ -49,7 +51,7 @@
         font-weight: 900;
         color: rgba(255, 255, 255, 1);
         &:nth-of-type(1) {
-          width: 483px;
+          // width: 483px;
         }
       }
     }
@@ -59,9 +61,9 @@
       font-weight: 400;
       color: rgba(255, 255, 255, 1);
       line-height: 50px;
-      margin-bottom: 60px;
     }
     .get_start_btn {
+      margin-top: 60px;
       border: none;
       width: 140px;
       height: 40px;

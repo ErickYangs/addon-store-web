@@ -10,7 +10,7 @@
     </div>
     <div class="tips _tps_btm">
       {{$t('signin.sub_title1')}}
-      <span>{{$t('signin.sub_title2')}}</span>
+      <!-- <span>{{$t('signin.sub_title2')}}</span> -->
     </div>
     <div class="download_box">
       <div class="media_btn hoveraction" @click="openNewPage(appstoreUrl)">

@@ -3,12 +3,12 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>{{$t('plugin.main_title1')}}</span>
+          <span>{{ $t('plugin.main_title1') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">{{$t('plugin.main_title1')}}</div>
+          <div class="main_sub_title">{{ $t('plugin.main_title1') }}</div>
           <div class="main_sub_desc">
             DDXF is a decentralized data exchange and collaboration framework.
             DDXF is able to tokenize any valuable data and provides data
@@ -34,7 +34,7 @@
     <div class="plugin_body">
       <!-- Cydia -->
       <div class="lib_wrap">
-        <div class="lib_title">{{$t('plugin.main_title2')}}</div>
+        <div class="lib_title">{{ $t('plugin.main_title2') }}</div>
         <div class="lib_wrap">
           <div
             @click="
@@ -56,7 +56,7 @@
       </div>
       <!-- Custom plug-inia -->
       <div class="lib_wrap">
-        <div class="lib_title">{{$t('plugin.main_title3')}}</div>
+        <div class="lib_title">{{ $t('plugin.main_title3') }}</div>
         <div class="lib_wrap">
           <div
             @click="$router.push({ name: 'CreateArticle' })"
@@ -66,7 +66,9 @@
               <i class="add_b"></i>
               <i class="add_w"></i>
             </div>
-            <div class="lib_item_add_tips hover6">{{$t('plugin.addBtn')}}</div>
+            <div class="lib_item_add_tips hover6">
+              {{ $t('plugin.addBtn') }}
+            </div>
           </div>
           <div
             @click="
@@ -78,7 +80,7 @@
           >
             <div class="lib_item_title hover6">{{ item.addonName }}</div>
             <div class="lib_item_desc">{{ item.description }}</div>
-            <div class="lib_item_config">{{$t('plugin.detail')}}</div>
+            <div class="lib_item_config">{{ $t('plugin.detail') }}</div>
             <div class="lib_item_edit">
               <i class="edit_b"></i>
               <i class="edit_w"></i>

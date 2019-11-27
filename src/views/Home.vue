@@ -212,7 +212,8 @@ export default {
           height: 30px !important;
           line-height: 30px;
           display: flex;
-          justify-content: space-evenly;
+          justify-content: flex-start;
+          padding-left: 10px;
           align-items: center;
           transition: all 0.6s;
           border-radius: 15px;
@@ -225,6 +226,7 @@ export default {
             width: 12px;
             height: 12px;
             transition: all 0.6s;
+            margin-right: 8px;
           }
           .all_icon {
             background: url(../assets/images/homeIcon_w.svg) no-repeat center;
@@ -385,8 +387,13 @@ export default {
         height: 26px !important;
         line-height: 26px;
         background: #0076df;
+        padding-left: 0;
+        justify-content: space-evenly;
         span {
           display: none;
+        }
+        i {
+          margin-right: 0;
         }
       }
     }

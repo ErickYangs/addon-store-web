@@ -3,12 +3,12 @@
     <div class="main_tips">
       <div class="breadcrumb">
         <div class="bread_item">
-          <span>App</span>
+          <span>{{ $t('application.lg_title') }}</span>
         </div>
       </div>
       <div class="main_message_wrap">
         <div class="main_message_left">
-          <div class="main_sub_title">Add New App</div>
+          <div class="main_sub_title">{{ $t('application.lg_title') }}</div>
           <div class="main_sub_desc">
             DDXF is a decentralized data exchange and collaboration framework.
             DDXF is able to tokenize any valuable data and provides data
@@ -23,10 +23,12 @@
           <i class="add_b"></i>
           <i class="add_w"></i>
         </div>
-        <div class="lib_item_add_tips hover6">Add New App</div>
+        <div class="lib_item_add_tips hover6">{{$t('application.create')}}</div>
       </div>
       <div
-        @click="$router.push({ name: 'ApplicationDetail', query: { id: item.id } })"
+        @click="
+          $router.push({ name: 'ApplicationDetail', query: { id: item.id } })
+        "
         class="app_item hover6"
         v-for="(item, index) in appList"
         :key="index"
@@ -40,7 +42,7 @@
           <div class="app_name single_ellipsis hover6">{{ item.appName }}</div>
         </div>
         <div class="btn_wrap">
-          <span>Admin</span>
+          <span>{{ $t('application.lg_detail') }}</span>
         </div>
       </div>
     </div>

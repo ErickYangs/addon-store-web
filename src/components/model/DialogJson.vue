@@ -22,7 +22,7 @@
           ref="jsonEditor"
           v-model="jsonData"
           :plus="false"
-          height="600px"
+          height="400px"
           @error="onError"
           @onChange="changes"
         ></v-jsoneditor>
@@ -76,6 +76,6 @@ export default {
 <style lang="less">
 .json_dialog_content {
   width: 100%;
-  min-height: 600px;
+  height: 400px;
 }
 </style>
