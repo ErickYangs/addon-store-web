@@ -6,7 +6,11 @@
         Create a project Auth Saas
       </div>
       <div class="go_tips">Let’s go Auth Saas.</div>
-      <a-button class="get_start_btn">Get Started</a-button>
+      <a-button
+        class="get_start_btn"
+        @click="$router.push({ name: 'Application' })"
+        >Get Started</a-button
+      >
     </div>
   </div>
 </template>

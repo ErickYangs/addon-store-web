@@ -23,6 +23,7 @@
           :defaultSelectedKeys="[currentKey]"
           @click="handlerClick"
           :openKeys.sync="openKeys"
+          :selectedKeys="[currentKey]"
         >
           <a-menu-item key="Dashboard">
             <div class="sub_wrap">
@@ -118,6 +119,7 @@ export default {
     currentKey: {
       get() {
         let route = this.$route
+        // console.log(route)
         const { meta, name } = route
         // if set path, the sidebar will highlight the path you set
         if (meta.activeMenu) {
@@ -149,6 +151,9 @@ export default {
   watch: {
     openKeys(val) {
       // console.log('openKeys', val)
+    },
+    getPath() {
+      console.log(this.$route.path)
     }
   },
   async created() {
@@ -217,20 +222,20 @@ export default {
           }
           i {
             display: block;
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             transition: all 0.6s;
           }
           .all_icon {
-            background: url(../assets/images/homeIcon_w.svg) no-repeat;
+            background: url(../assets/images/homeIcon_w.svg) no-repeat center;
             background-size: contain;
           }
           .ddxf_icon {
-            background: url(../assets/images/ddxf_w.svg) no-repeat;
+            background: url(../assets/images/ddxf_w.svg) no-repeat center;
             background-size: contain;
           }
           .app_icon {
-            background: url(../assets/images/all_w.svg) no-repeat;
+            background: url(../assets/images/all_w.svg) no-repeat center;
             background-size: contain;
           }
         }
@@ -240,15 +245,15 @@ export default {
           background: #fff;
 
           i.all_icon {
-            background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
+            background: url(../assets/images/homeIcon_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
           i.ddxf_icon {
-            background: url(../assets/images/ddxf_b.svg) no-repeat !important;
+            background: url(../assets/images/ddxf_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
           .app_icon {
-            background: url(../assets/images/all_b.svg) no-repeat;
+            background: url(../assets/images/all_b.svg) no-repeat center;
             background-size: contain;
           }
           span {
@@ -262,15 +267,15 @@ export default {
           background: #fff;
           border-radius: 15px;
           i.all_icon {
-            background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
+            background: url(../assets/images/homeIcon_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
           i.ddxf_icon {
-            background: url(../assets/images/ddxf_b.svg) no-repeat !important;
+            background: url(../assets/images/ddxf_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
           i.app_icon {
-            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background: url(../assets/images/all_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
           span {
@@ -405,15 +410,15 @@ export default {
         .sub_wrap {
           background: #fff;
           i.all_icon {
-            background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
+            background: url(../assets/images/homeIcon_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
           i.ddxf_icon {
-            background: url(../assets/images/ddxf_b.svg) no-repeat;
+            background: url(../assets/images/ddxf_b.svg) no-repeat center;
             background-size: contain;
           }
           i.app_icon {
-            background: url(../assets/images/all_b.svg) no-repeat !important;
+            background: url(../assets/images/all_b.svg) no-repeat center !important;
             background-size: contain !important;
           }
         }
@@ -486,15 +491,15 @@ export default {
         background: #fff;
         border-radius: 15px;
         i.all_icon {
-          background: url(../assets/images/homeIcon_b.svg) no-repeat !important;
+          background: url(../assets/images/homeIcon_b.svg) no-repeat center !important;
           background-size: contain !important;
         }
         i.ddxf_icon {
-          background: url(../assets/images/ddxf_b.svg) no-repeat !important;
+          background: url(../assets/images/ddxf_b.svg) no-repeat center !important;
           background-size: contain !important;
         }
         i.app_icon {
-          background: url(../assets/images/all_b.svg) no-repeat !important;
+          background: url(../assets/images/all_b.svg) no-repeat center !important;
           background-size: contain !important;
         }
         span {
