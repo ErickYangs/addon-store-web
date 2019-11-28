@@ -159,6 +159,7 @@ router.beforeEach(async (to, from, next) => {
           break
       }
       message.error(msg)
+      Storage.clear()
       next({ name: 'Login' })
       NProgress.done()
       return false
