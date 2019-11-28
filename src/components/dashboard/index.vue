@@ -71,4 +71,12 @@
     }
   }
 }
+@media only screen and (min-width: 1441px) {
+  .dashboard {
+    .word_bg {
+      width: 1100px;
+      height: 758px;
+    }
+  }
+}
 </style>

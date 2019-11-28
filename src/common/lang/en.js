@@ -28,7 +28,8 @@ export default {
     confirm: 'Confirm',
     complete: 'Complete',
     back: 'Back',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    document: 'Documentation'
   },
   dialog: {
     addTips: 'Select add-on'

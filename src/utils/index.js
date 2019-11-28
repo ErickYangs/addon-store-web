@@ -39,3 +39,8 @@ export function formatTime(time) {
   moment.locale('en')
   return time ? moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a') : ''
 }
+
+export function FormatFirstName(str) {
+  if (!str) return '*'
+  return str.slice(0, 1)
+}

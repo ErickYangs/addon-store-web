@@ -121,7 +121,6 @@ export default {
         this.$store.commit('createApp/CHANGE_STEP_ADD')
       } catch (error) {
         this.loading = false
-        this.$message.error('Creat failed, please try again!')
         throw error
       }
     }

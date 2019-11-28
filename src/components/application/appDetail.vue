@@ -57,18 +57,16 @@
     <!-- Subject information  -->
     <div class="app_info_wrap">
       <div class="form_area">
-        <div class="form_menu_item">
-          <div class="label_name">{{ $t('application.details.name') }}</div>
+        <div class="form_menu_item app_name">
+          {{ appNews.appName }}
+          <!-- <div class="label_name">{{ $t('application.details.name') }}</div>
           <input
             v-model="appNews.appName"
             type="text"
             placeholder="Please Input Application Name"
             disabled
-          />
-        </div>
-        <div class="form_menu_item">
-          <div class="label_name">{{ $t('application.details.ontid') }}</div>
-          <input v-model="appNews.appOntid" type="text" disabled />
+            class="no_border_bottom"
+          /> -->
         </div>
         <div class="form_menu_item wif_tips_area">
           <div class="label_name">
@@ -80,24 +78,39 @@
               </div>
             </div>
           </div>
-          <div class="app_wif_wrap" v-if="wifShow">
+          <div class="app_wif_wrap no_border_bottom" v-if="wifShow">
             {{ appNews.wif }}
             <span class="close" @click="wifShow = false"></span>
           </div>
-          <div class="app_wif_wrap" v-else>
+          <div class="app_wif_wrap no_border_bottom" v-else>
             {{ appNews.wif | closeText }}
             <span class="open" @click="wifShow = true"></span>
           </div>
         </div>
         <div class="form_menu_item">
+          <div class="label_name">{{ $t('application.details.ontid') }}</div>
+          <input
+            class="no_border_bottom"
+            v-model="appNews.appOntid"
+            type="text"
+            disabled
+          />
+        </div>
+
+        <div class="form_menu_item">
           <div class="label_name">{{ $t('application.details.domain') }}</div>
-          <input v-model="appNews.domain" type="text" disabled />
+          <input
+            class="no_border_bottom"
+            v-model="appNews.domain"
+            type="text"
+            disabled
+          />
         </div>
         <div class="form_menu_item">
           <div class="label_name">
             {{ $t('application.details.CreateTime') }}
           </div>
-          <div class="createTime_">
+          <div class="createTime_ no_border_bottom">
             {{ $utils.formatTime(appNews.createTime) }}
           </div>
         </div>
@@ -120,7 +133,7 @@
               @select-all="handleSelectAll"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
-              <el-table-column label="Add-ons" width="225">
+              <el-table-column label="Add-ons" width="345">
                 <template slot-scope="scope">{{
                   scope.row.addonName
                 }}</template>
@@ -165,9 +178,9 @@
           $t('common.update')
         }}</a-button>
       </div>
-      <div class="policy hover6">
+      <!-- <div class="policy hover6">
         I agree to the privacy policy
-      </div>
+      </div> -->
     </div>
     <!-- json -->
     <JsonCofig-div
@@ -280,7 +293,7 @@ export default {
         }
       } catch (error) {
         this.loading = false
-        this.$message.error('Update fail!')
+        // this.$message.error('Update fail!')
         throw error
       }
     },
@@ -400,14 +413,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 300px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;
@@ -507,6 +520,12 @@ export default {
           border-bottom: 1px solid #e4e4e4;
         }
       }
+      .app_name {
+        height: 56px;
+        line-height: 56px;
+        font-size: 22px;
+        font-weight: 600;
+      }
       .form_menu_item.desc_area {
         width: 100%;
       }
@@ -525,10 +544,11 @@ export default {
               height: 16px;
               background: url(../../assets/images/wifIcon.svg) no-repeat center;
               background-size: contain;
+              transition: all 0.6s;
             }
             .tips_content {
               position: absolute;
-              left: -750%;
+              left: -1500%;
               top: -650%;
               padding: 10px 20px;
               width: 510px;
@@ -536,11 +556,15 @@ export default {
               color: rgba(0, 0, 0, 0.3);
               line-height: 20px;
               background: rgba(250, 250, 250, 1);
-              box-shadow: 0 0 10px #ddd;
-              border-radius: 10px;
+              box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
+              border: 1px solid rgba(242, 242, 242, 1);
               display: none;
             }
             &:hover {
+              span.tips_icon {
+                background: url(../../assets/images/wifIcon_h.svg) no-repeat
+                  center;
+              }
               .tips_content {
                 display: block;
               }
@@ -551,7 +575,7 @@ export default {
       .table_box {
         width: 100%;
         .table_body {
-          width: 400px;
+          width: 520px;
         }
       }
     }
@@ -700,9 +724,9 @@ export default {
   color: @theme-color;
   .link_title {
     height: 28px;
-    font-size: 20px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
     font-weight: 600;
-    color: @theme-color;
     line-height: 28px;
     margin-bottom: 20px;
   }
@@ -712,7 +736,6 @@ export default {
       width: 140px;
       height: 22px;
       font-size: @14px;
-      color: @theme-color;
       line-height: 22px;
       margin: 10px 0;
       text-decoration: underline;

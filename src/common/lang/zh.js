@@ -28,15 +28,16 @@ export default {
     confirm: '确认',
     complete: '完成',
     back: '返回',
-    cancel: '取消'
+    cancel: '取消',
+    document: '说明文档'
   },
   dialog: {
     addTips: '选择插件'
   },
   leftMenu: {
-    home: 'Home',
-    app: 'Apps',
-    addon: 'Add-on'
+    home: '主页',
+    app: '应用库',
+    addon: '插件库'
   },
   application: {
     lg_title: '应用中心',

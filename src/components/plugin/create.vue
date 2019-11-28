@@ -43,7 +43,7 @@
           }}</span>
         </div>
       </div>
-      <div class="json_area"></div>
+      <!-- <div class="json_area"></div> -->
     </div>
   </div>
 </template>
@@ -87,7 +87,7 @@ export default {
         await this.$store.dispatch('login/getCustomAddon')
         this.$router.push({ name: 'PluginLayout' })
       } catch (error) {
-        this.$message.error('Create Add-on Fail!')
+        // this.$message.error('Create Add-on Fail!')
         throw error
       }
     }
@@ -123,14 +123,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 400px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;
@@ -180,7 +180,7 @@ export default {
 }
 .plugin_content {
   width: 100%;
-  padding: 20px 60px 20px 40px;
+  padding: 40px 60px 20px 40px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

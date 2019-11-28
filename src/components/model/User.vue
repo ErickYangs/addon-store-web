@@ -9,7 +9,10 @@
     >
       <a class="ant-dropdown-link">
         <div class="usericon">
-          <a-avatar :size="30" icon="user" />
+          <!-- <a-avatar :size="30" icon="user" /> -->
+          <span class="username_icon">{{
+            $utils.FormatFirstName(account.username)
+          }}</span>
           <i class="arrow_"></i>
         </div>
       </a>
@@ -18,7 +21,7 @@
           <span>{{ account.username }}</span>
         </a-menu-item>
         <a-menu-item>
-          <span @click="logOut">{{$t('common.out')}}</span>
+          <span @click="logOut">{{ $t('common.out') }}</span>
         </a-menu-item>
       </a-menu>
     </a-dropdown>
@@ -58,6 +61,17 @@ export default {
       display: flex;
       justify-content: space-around;
       align-items: center;
+      .username_icon {
+        display: block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        background: rgba(23, 135, 235, 0.6);
+        font-size: 14px;
+        color: #fff;
+        text-align: center;
+      }
       i.arrow_ {
         display: block;
         width: 6px;
@@ -70,9 +84,9 @@ export default {
   }
   .ant-dropdown-link.ant-dropdown-open {
     .usericon {
-      i.arrow_ {
-        transform: rotate(-90deg);
-      }
+      // i.arrow_ {
+      //   transform: rotate(-90deg);
+      // }
     }
   }
   .ant-dropdown {

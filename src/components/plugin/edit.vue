@@ -26,7 +26,7 @@
               placeholder="Please Input Add-on Name"
             />
           </div>
-          <div class="form_menu_item">
+          <div class="form_menu_item create_none_border">
             <div class="label_name">
               {{ $t('plugin.addonDetail.addCreateTime') }}
             </div>
@@ -50,7 +50,7 @@
           }}</span>
         </div>
       </div>
-      <div class="json_area"></div>
+      <!-- <div class="json_area"></div> -->
     </div>
   </div>
 </template>
@@ -161,14 +161,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 300px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;
@@ -218,7 +218,7 @@ export default {
 }
 .plugin_content {
   width: 100%;
-  padding: 20px 60px 20px 40px;
+  padding: 40px 60px 20px 40px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -281,6 +281,11 @@ export default {
             // padding-left: 4px;
             font-weight: 400;
           }
+        }
+      }
+      .create_none_border {
+        input {
+          border-bottom: none;
         }
       }
     }

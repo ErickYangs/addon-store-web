@@ -24,15 +24,17 @@
       <div class="form_area">
         <div class="form_menu_item">
           <div class="label_name">{{ $t('plugin.addonDetail.addName') }}</div>
-          <div class="app_wif_wrap">{{ addonDetail.addonName }}</div>
+          <div class="app_wif_wrap no_border_bottom">{{ addonDetail.addonName }}</div>
         </div>
         <div class="form_menu_item">
           <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
           <div class="app_wif_wrap no_line">{{ addonDetail.description }}</div>
         </div>
         <div class="form_menu_item">
-          <div class="label_name">{{ $t('plugin.addonDetail.addCreateTime') }}</div>
-          <div class="app_wif_wrap">
+          <div class="label_name">
+            {{ $t('plugin.addonDetail.addCreateTime') }}
+          </div>
+          <div class="app_wif_wrap no_border_bottom">
             {{ $utils.formatTime(addonDetail.createTime) }}
           </div>
         </div>
@@ -41,6 +43,14 @@
           <div class="app_wif_wrap link no_line">
             <span class="hover6" @click="openLink(addonDetail.sdkUrl)"
               >SDK Download Link</span
+            >
+          </div>
+        </div>
+        <div class="form_menu_item">
+          <div class="label_name">{{ $t('common.document') }}</div>
+          <div class="app_wif_wrap link no_line">
+            <span class="hover6" @click="openLink(documentLink)"
+              >Document Link</span
             >
           </div>
         </div>
@@ -57,6 +67,9 @@
             ></v-jsoneditor>
           </div>
         </div>
+      </div>
+      <div class="_btn_wrap">
+        <a-button class="create_btn" @click="$router.go(-1)">{{ $t('common.back') }}</a-button>
       </div>
     </div>
   </div>
@@ -77,8 +90,8 @@ export default {
         sdkUrl: '',
         template: '{}'
       },
-
-      jsonConfig: {}
+      jsonConfig: {},
+      documentLink: 'https://ontology-1.gitbook.io/distributed-data-exchange-framework/-LsuiQrUlVqKUmutU3MP/'
     }
   },
   methods: {
@@ -148,14 +161,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 300px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;
@@ -238,6 +251,34 @@ export default {
       position: relative;
       padding-right: 20px;
       font-size: @14px;
+    }
+  }
+}
+._btn_wrap {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  button.create_btn {
+    border: none;
+    display: block;
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(
+      90deg,
+      rgba(11, 134, 240, 1) 0%,
+      rgba(60, 204, 251, 1) 100%
+    );
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: @14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 40px;
+    text-align: center;
+    &:hover {
+      opacity: 0.8;
     }
   }
 }

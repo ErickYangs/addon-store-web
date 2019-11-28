@@ -140,41 +140,41 @@ router.beforeEach(async (to, from, next) => {
     return
   }
   // --------------------------------
-  next()
-  
-  // try {
-  //   let res = await CheckToken({ token })
-  //   // console.log('token res', res)
+  // next()
 
-  //   let errorCode = res.error
-  //   if (errorCode != 0) {
-  //     let msg = ''
-  //     switch (errorCode) {
-  //       case 62002:
-  //         msg = 'Authentication failed, please log in again!'
-  //         break
-  //       case 62003:
-  //         msg = 'Session expired, please log in again!'
-  //         break
-  //       default:
-  //         msg = 'Please log in again!'
-  //         break
-  //     }
-  //     message.error(msg)
-  //     next({ name: 'Login' })
-  //     NProgress.done()
-  //     return false
-  //   }
-  //   Storage.setToken(res.result.token)
-  //   // Storage.setNews('ontid', res.result.ontid)
-  //   // Storage.setNews('userName', res.result.userName)
-  //   next()
-  // } catch (error) {
-  //   Storage.removeToken()
-  //   next({ name: 'Login' })
-  //   NProgress.done()
-  //   throw error
-  // }
+  try {
+    let res = await CheckToken({ token })
+    // console.log('token res', res)
+
+    let errorCode = res.error
+    if (errorCode != 0) {
+      let msg = ''
+      switch (errorCode) {
+        case 62002:
+          msg = 'Authentication failed, please log in again!'
+          break
+        case 62003:
+          msg = 'Session expired, please log in again!'
+          break
+        default:
+          msg = 'Please log in again!'
+          break
+      }
+      message.error(msg)
+      next({ name: 'Login' })
+      NProgress.done()
+      return false
+    }
+    Storage.setToken(res.result.token)
+    // Storage.setNews('ontid', res.result.ontid)
+    // Storage.setNews('userName', res.result.userName)
+    next()
+  } catch (error) {
+    Storage.removeToken()
+    next({ name: 'Login' })
+    NProgress.done()
+    throw error
+  }
 })
 router.afterEach(() => {
   // finish progress bar

@@ -12,15 +12,16 @@
             type="text"
             placeholder="Please Enter Application ONT ID"
             disabled
+            class="no_border_bottom"
           />
         </div>
         <div class="form_menu_item">
           <div class="label_name">{{ $t('application.details.wif') }}</div>
-          <div class="app_wif_wrap" v-if="wifShow">
+          <div class="app_wif_wrap no_border_bottom" v-if="wifShow">
             {{ appNews.wif }}
             <span class="close" @click="wifShow = false"></span>
           </div>
-          <div class="app_wif_wrap" v-else>
+          <div class="app_wif_wrap no_border_bottom" v-else>
             {{ appNews.wif | closeText }}
             <span class="open" @click="wifShow = true"></span>
           </div>
@@ -32,6 +33,7 @@
             type="text"
             placeholder="Please Enter domain"
             disabled
+            class="no_border_bottom"
           />
         </div>
       </div>
@@ -323,7 +325,7 @@ export default {
   }
 }
 .table_body {
-  width: 600px;
+  width: 460px;
 }
 .next_btn {
   border: none;
