@@ -23,14 +23,14 @@
             <input
               v-model="appNews.appName"
               type="text"
-              placeholder="Please Enter Add-on Name"
+              placeholder="Please enter Add-on name"
             />
           </div>
           <div class="form_menu_item">
             <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
             <textarea
               v-model="appNews.appDesc"
-              placeholder="Please Enter Add-on Description"
+              placeholder="Please enter Add-on description"
             ></textarea>
           </div>
         </div>

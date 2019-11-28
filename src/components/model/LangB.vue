@@ -2,13 +2,13 @@
   <div class="dropdown">
     <a-dropdown
       :getPopupContainer="
-          triggerNode => {
-            return triggerNode.parentNode || document.body;
-          }
-        "
+        triggerNode => {
+          return triggerNode.parentNode || document.body
+        }
+      "
     >
       <a class="ant-dropdown-link" href="#">
-        {{this.$i18n.locale | langStyle}}
+        {{ this.$i18n.locale | langStyle }}
       </a>
       <a-menu slot="overlay">
         <a-menu-item>
@@ -33,7 +33,7 @@ export default {
     }
   },
   filters: {
-    langStyle: function (value) {
+    langStyle: function(value) {
       if (value === 'ch') {
         return '中文'
       } else if (value === 'ko') {
@@ -70,7 +70,7 @@ export default {
     position: relative;
     // border: 1px solid #000;
     &::before {
-      content: "";
+      content: '';
       width: @14px;
       height: @14px;
       background: url(../../assets/images/lang_ball.svg) no-repeat;
@@ -81,7 +81,7 @@ export default {
       transform: translateY(-50%);
     }
     &::after {
-      content: "";
+      content: '';
       width: 6px;
       height: 4px;
       background: url(../../assets/images/lang_down.svg) no-repeat;

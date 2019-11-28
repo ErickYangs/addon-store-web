@@ -29,10 +29,10 @@ export default {
     complete: 'Complete',
     back: 'Back',
     cancel: 'Cancel',
-    document: 'Documentation'
+    document: 'Configuration Manual'
   },
   dialog: {
-    addTips: 'Select add-on'
+    addTips: 'Select Add-on'
   },
   leftMenu: {
     home: 'Home',
@@ -41,7 +41,7 @@ export default {
   },
   application: {
     lg_title: 'App Center',
-    create: 'Create New App',
+    create: 'Create a new app',
     lg_detail: 'Details',
     details: {
       ontid: 'Application ONT ID',
@@ -49,7 +49,7 @@ export default {
       name: 'Application Name',
       domain: 'Application Domain',
       desc: 'Application Description',
-      CreateTime: 'Application CreateTime',
+      CreateTime: 'Time of Creation',
       wifTips: '节点质押是用户将ONT质押到节点钟参与本体网络治理的行为，质押ONT是通过智能合约实现的，除了质押人，其他任何人无权触碰被质押的ONT，因此只要不丢失您的钱包私钥，您的ONT始终是安全，通过参与质押，您可以获取本体网络手续费分成奖励和基金会节点奖励'
     },
     addApp: {
@@ -59,7 +59,7 @@ export default {
       config: 'Configuration',
       sdkBtn: 'Generate SDK',
       step3: 'Step 3',
-      sub_tips: 'Your custom SDK add-on has been generated succesfully',
+      sub_tips: 'Your custom SDK add-on has been generated succesfully.',
       downBtn: 'Download SDK'
     }
   },
@@ -68,12 +68,12 @@ export default {
     main_title2: 'Ontology Add-ons',
     main_title3: 'Add-on Store',
     detail: 'Details',
-    addBtn: 'Submit new add-on',
+    addBtn: 'Submit new Add-on',
     addonDetail: {
       addName: 'Add-on Name',
       addDesc: 'Add-on Description',
-      addCreateTime: 'Add-on CreateTime',
-      addonLink: 'Add-on SDK Link',
+      addCreateTime: 'Time of Creation',
+      addonLink: 'Add-on SDK',
       addonTep: 'Add-on Template'
     },
     edit: {

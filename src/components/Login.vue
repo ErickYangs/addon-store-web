@@ -1,16 +1,17 @@
 <template>
   <div class="login_layout">
     <div class="title"></div>
-    <div class="tips _tps_top">
-      {{$t('signin.tips')}}
-      <span @click="$router.push({ path: 'register' })">{{$t('signin.register')}}</span>
-    </div>
+    <!-- <div class="tips _tps_top">
+      {{ $t('signin.tips') }}
+      <span @click="$router.push({ path: 'register' })">{{
+        $t('signin.register')
+      }}</span>
+    </div> -->
     <div class="qrcode">
       <img :src="imgUrl" alt />
     </div>
     <div class="tips _tps_btm">
-      {{$t('signin.sub_title1')}}
-      <!-- <span>{{$t('signin.sub_title2')}}</span> -->
+      {{ $t('signin.sub_title1') }}
     </div>
     <div class="download_box">
       <div class="media_btn hoveraction" @click="openNewPage(appstoreUrl)">
@@ -86,7 +87,7 @@ export default {
           Storage.setToken(res.result.token)
           Storage.setNews('ontid', res.result.ontid)
           Storage.setNews('userName', res.result.userName)
-          this.$message.success('Sign In Successful!')
+          this.$message.success('Have fun. Stay cool. Change the world!')
           clearInterval(this.checkTimer)
           this.$router.push({ path: '/' })
           return true
@@ -157,6 +158,7 @@ export default {
   .qrcode {
     width: 164px;
     height: 164px;
+    margin-top: 40px;
     img {
       display: block;
       width: 100%;

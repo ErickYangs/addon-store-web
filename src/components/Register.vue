@@ -2,15 +2,21 @@
   <div class="register_layout">
     <div class="title"></div>
     <div class="tips _tps_top">
-      {{$t('signup.tips1')}}
-      <span @click="$router.push({ path: 'login' })">{{$t('signup.signin')}}</span>
+      {{ $t('signup.tips1') }}
+      <span @click="$router.push({ path: 'login' })">{{
+        $t('signup.signin')
+      }}</span>
     </div>
     <div class="center_box">
       <div class="acc_bx" v-if="!isQrcode">
         <div class="input_area">
-          <input @keyup.enter="sendName" :placeholder="langTip.placehodler" v-model="accountName" />
+          <input
+            @keyup.enter="sendName"
+            :placeholder="langTip.placehodler"
+            v-model="accountName"
+          />
         </div>
-        <div class="btn" @click="sendName">{{$t('signup.next')}}</div>
+        <div class="btn" @click="sendName">{{ $t('signup.next') }}</div>
       </div>
       <div class="qrcode" v-else>
         <img :src="url" alt />

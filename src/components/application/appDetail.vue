@@ -164,13 +164,14 @@
       <div class="link_body">
         <div class="link_title">{{ $t('application.addApp.downBtn') }}</div>
         <div class="link_cont">
-          <span
-            class="hover6"
+          <div
+            class="link_c"
             @click="$utils.openLink(item.sdkUrl, '_self')"
             v-for="(item, index) in linkList"
             :key="index"
-            >{{ item.addonName }}</span
           >
+            <span class="hover6"> {{ item.addonName }}</span>
+          </div>
         </div>
       </div>
       <div>
@@ -559,6 +560,7 @@ export default {
               box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
               border: 1px solid rgba(242, 242, 242, 1);
               display: none;
+              z-index: 99;
             }
             &:hover {
               span.tips_icon {
@@ -731,17 +733,29 @@ export default {
     margin-bottom: 20px;
   }
   .link_cont {
-    span {
-      display: block;
-      width: 140px;
+    .link_c {
       height: 22px;
       font-size: @14px;
       line-height: 22px;
       margin: 10px 0;
       text-decoration: underline;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.8;
+      span {
+        position: relative;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+        &::after {
+          position: absolute;
+          content: '';
+          right: -20px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 14px;
+          height: 14px;
+          background: url(../../assets/images/down_b.svg) no-repeat center;
+          background-size: contain;
+        }
       }
     }
   }
@@ -799,6 +813,15 @@ export default {
       display: flex;
       justify-content: flex-start;
       align-items: center;
+    }
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .form_menu_item.wif_tips_area {
+    .wif_tips {
+      .tips_content {
+        left: -900% !important;
+      }
     }
   }
 }

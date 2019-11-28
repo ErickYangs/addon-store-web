@@ -23,7 +23,9 @@
           <i class="add_b"></i>
           <i class="add_w"></i>
         </div>
-        <div class="lib_item_add_tips hover6">{{$t('application.create')}}</div>
+        <div class="lib_item_add_tips hover6">
+          {{ $t('application.create') }}
+        </div>
       </div>
       <div
         @click="

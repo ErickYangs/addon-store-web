@@ -7,13 +7,14 @@
       <div class="link_body">
         <div class="link_title">{{ $t('application.addApp.downBtn') }}</div>
         <div class="link_cont">
-          <span
-            class="hover6"
+          <div
+            class="link_c"
             @click="$utils.openLink(item.sdkUrl, '_self')"
             v-for="(item, index) in linkList"
             :key="index"
-            >{{ item.addonName }}</span
           >
+            <span class="hover6"> {{ item.addonName }}</span>
+          </div>
         </div>
         <div>
           <a-button
@@ -80,7 +81,7 @@ export default {
       margin-bottom: 20px;
     }
     .link_cont {
-      span {
+      .link_c {
         display: block;
         width: 140px;
         height: 22px;
@@ -88,10 +89,23 @@ export default {
         color: @theme-color;
         line-height: 22px;
         margin: 10px 0;
-        text-decoration: underline;
-        cursor: pointer;
-        &:hover {
-          opacity: 0.8;
+        span {
+          position: relative;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
+          &::after {
+            position: absolute;
+            content: '';
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: url(../../assets/images/down_b.svg) no-repeat center;
+            background-size: contain;
+          }
         }
       }
     }

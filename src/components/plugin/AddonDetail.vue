@@ -24,7 +24,9 @@
       <div class="form_area">
         <div class="form_menu_item">
           <div class="label_name">{{ $t('plugin.addonDetail.addName') }}</div>
-          <div class="app_wif_wrap no_border_bottom">{{ addonDetail.addonName }}</div>
+          <div class="app_wif_wrap no_border_bottom">
+            {{ addonDetail.addonName }}
+          </div>
         </div>
         <div class="form_menu_item">
           <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
@@ -41,8 +43,8 @@
         <div class="form_menu_item">
           <div class="label_name">{{ $t('plugin.addonDetail.addonLink') }}</div>
           <div class="app_wif_wrap link no_line">
-            <span class="hover6" @click="openLink(addonDetail.sdkUrl)"
-              >SDK Download Link</span
+            <span class="hover6 sdk_code" @click="openLink(addonDetail.sdkUrl)"
+              >Download SDK</span
             >
           </div>
         </div>
@@ -50,7 +52,7 @@
           <div class="label_name">{{ $t('common.document') }}</div>
           <div class="app_wif_wrap link no_line">
             <span class="hover6" @click="openLink(documentLink)"
-              >Document Link</span
+              >View documentation</span
             >
           </div>
         </div>
@@ -69,7 +71,9 @@
         </div>
       </div>
       <div class="_btn_wrap">
-        <a-button class="create_btn" @click="$router.go(-1)">{{ $t('common.back') }}</a-button>
+        <a-button class="create_btn" @click="$router.go(-1)">{{
+          $t('common.back')
+        }}</a-button>
       </div>
     </div>
   </div>
@@ -91,7 +95,8 @@ export default {
         template: '{}'
       },
       jsonConfig: {},
-      documentLink: 'https://ontology-1.gitbook.io/distributed-data-exchange-framework/-LsuiQrUlVqKUmutU3MP/'
+      documentLink:
+        'https://ontology-1.gitbook.io/distributed-data-exchange-framework/-LsuiQrUlVqKUmutU3MP/'
     }
   },
   methods: {
@@ -227,6 +232,20 @@ export default {
         cursor: pointer;
         &:hover {
           opacity: 0.8;
+        }
+      }
+      span.sdk_code {
+        position: relative;
+        &::after {
+          position: absolute;
+          content: '';
+          right: -20px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 14px;
+          height: 14px;
+          background: url(../../assets/images/down_b.svg) no-repeat center;
+          background-size: contain;
         }
       }
     }
