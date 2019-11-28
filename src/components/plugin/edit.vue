@@ -32,21 +32,6 @@
             </div>
             <input v-model="appNews.createTime" type="text" disabled />
           </div>
-          <!-- <div class="form_menu_item">
-            <div class="label_name">Add-on Wif</div>
-            <div class="app_wif_wrap" v-if="wifShow">
-              {{ appNews.wif }}
-              <span class="close" @click="wifShow = false"></span>
-            </div>
-            <div class="app_wif_wrap" v-else>
-              {{ appNews.wif | closeText }}
-              <span class="open" @click="wifShow = true"></span>
-            </div>
-          </div>
-          <div class="form_menu_item">
-            <div class="label_name">Add-on Domain</div>
-            <input v-model="appNews.domain" type="text" disabled />
-          </div>-->
           <div class="form_menu_item">
             <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
             <textarea
@@ -84,8 +69,8 @@ export default {
         addonName: '',
         description: '',
         ontid: '',
-        wif: 'ALQAmoUQwfupnDqkXQ1EEdGhhFkUNkS1uy',
-        domain: 'ontology.com',
+        wif: '',
+        domain: '',
         createTime: ''
       },
       appId: '',
@@ -117,7 +102,7 @@ export default {
     },
     async updateAddon() {
       if (!this.appNews.addonName) {
-        this.$message.error('Please Input Add-on Name!')
+        this.$message.error('Please Enter Add-on Name!')
         return false
       }
       let params = {

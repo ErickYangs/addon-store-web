@@ -88,7 +88,6 @@ export default {
         okType: 'success',
         cancelText: 'No',
         onOk() {
-          // console.log(_self)
           _self.$router.push({ name: 'CreateApp' })
         },
         onCancel() {

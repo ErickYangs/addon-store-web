@@ -68,7 +68,7 @@ export default {
   methods: {
     async createAddon() {
       if (!this.appNews.appName) {
-        this.$message.error('Please Input Add-on Name!')
+        this.$message.error('Please Enter Add-on Name!')
         return false
       }
       let params = {

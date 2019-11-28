@@ -43,7 +43,7 @@ export default {
   methods: {
     async sendName() {
       if (!this.accountName) {
-        this.$message.error('Please Input Yours Account Name!')
+        this.$message.error('Please Enter Yours Account Name!')
         return false
       }
       try {

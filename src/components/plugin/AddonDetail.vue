@@ -111,10 +111,8 @@ export default {
       if (!val) return ''
       var objStr = JSON.stringify(val, null, 4)
       let html = objStr.replace(/\n/g, '<br>').replace(/\s/g, ' ')
-      // console.log(html)
       return html
     }
-    // return moment(time).format('LLL')
   },
   components: {
     VJsoneditor

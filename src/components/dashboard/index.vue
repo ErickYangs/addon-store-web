@@ -43,16 +43,12 @@
     left: 140px;
     top: 200px;
     .main_slogin {
-      // height: 140px;
       font-size: 60px;
       line-height: 70px;
       margin-bottom: 20px;
       p {
         font-weight: 900;
         color: rgba(255, 255, 255, 1);
-        &:nth-of-type(1) {
-          // width: 483px;
-        }
       }
     }
     .go_tips {
