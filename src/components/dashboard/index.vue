@@ -43,16 +43,12 @@
     left: 140px;
     top: 200px;
     .main_slogin {
-      // height: 140px;
       font-size: 60px;
       line-height: 70px;
       margin-bottom: 20px;
       p {
         font-weight: 900;
         color: rgba(255, 255, 255, 1);
-        &:nth-of-type(1) {
-          // width: 483px;
-        }
       }
     }
     .go_tips {
@@ -72,6 +68,14 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       font-weight: 900;
       color: @theme-color;
+    }
+  }
+}
+@media only screen and (min-width: 1441px) {
+  .dashboard {
+    .word_bg {
+      width: 1100px;
+      height: 758px;
     }
   }
 }

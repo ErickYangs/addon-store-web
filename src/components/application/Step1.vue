@@ -4,7 +4,7 @@
       <div class="app_form">
         <div class="form_area">
           <div class="form_menu_item">
-            <div class="label_name">{{$t('application.details.name')}}</div>
+            <div class="label_name">{{ $t('application.details.name') }}</div>
             <input
               v-model="appNews.appName"
               type="text"
@@ -12,7 +12,7 @@
             />
           </div>
           <div class="form_menu_item">
-            <div class="label_name">{{$t('application.details.desc')}}</div>
+            <div class="label_name">{{ $t('application.details.desc') }}</div>
             <textarea
               v-model="appNews.description"
               placeholder="Enter application description"
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="select_title">{{$t('application.addApp.selectaddon')}}</div>
+      <div class="select_title">{{ $t('application.addApp.selectaddon') }}</div>
       <div class="app_sdk_layout">
         <div class="sdk_ele" v-for="(item, index) in plgindata" :key="index">
           <img src="../../assets/images/sdk_icon.svg" alt="" />
@@ -37,7 +37,7 @@
       class="next_btn hover6"
       @click="create"
     >
-      {{$t('common.next')}}
+      {{ $t('common.next') }}
     </a-button>
     <dialog-div
       ref="dialogRadil"
@@ -90,7 +90,7 @@ export default {
     },
     async create() {
       if (!this.appNews.appName) {
-        this.$message.error('Please Input Application Name!')
+        this.$message.error('Please input application name!')
         return false
       }
       if (!this.plgindata.length) {
@@ -121,7 +121,6 @@ export default {
         this.$store.commit('createApp/CHANGE_STEP_ADD')
       } catch (error) {
         this.loading = false
-        this.$message.error('Creat failed, please try again!')
         throw error
       }
     }

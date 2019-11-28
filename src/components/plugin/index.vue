@@ -46,11 +46,6 @@
           >
             <div class="lib_item_title hover6">{{ item.addonName }}</div>
             <div class="lib_item_desc hover6">{{ item.description }}</div>
-            <!-- <div class="lib_item_config">Admin</div>
-            <div class="lib_item_edit">
-              <i class="edit_b"></i>
-              <i class="edit_w"></i>
-            </div> -->
           </div>
         </div>
       </div>
@@ -137,14 +132,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 300px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;

@@ -244,3 +244,6 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.no_border_bottom {
+  border-bottom: none !important;
+}

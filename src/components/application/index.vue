@@ -23,7 +23,9 @@
           <i class="add_b"></i>
           <i class="add_w"></i>
         </div>
-        <div class="lib_item_add_tips hover6">{{$t('application.create')}}</div>
+        <div class="lib_item_add_tips hover6">
+          {{ $t('application.create') }}
+        </div>
       </div>
       <div
         @click="
@@ -88,7 +90,6 @@ export default {
         okType: 'success',
         cancelText: 'No',
         onOk() {
-          // console.log(_self)
           _self.$router.push({ name: 'CreateApp' })
         },
         onCancel() {
@@ -140,14 +141,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 300px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;
@@ -198,7 +199,7 @@ export default {
 .application_wrap {
   .app_body {
     width: 100%;
-    padding: 60px 30px;
+    padding: 40px 30px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;

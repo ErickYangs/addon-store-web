@@ -2,16 +2,16 @@
   <div class="error_404_wrap">
     <div class="home_logo hover6" @click="$router.push({ path: '/' })"></div>
     <div class="cray"></div>
-    <div class="lg_title">{{$t('pageNot.main_title')}}</div>
+    <div class="lg_title">{{ $t('pageNot.main_title') }}</div>
     <div class="md_desc">
       DDXF is a decentralized data exchange and collaboration framework. DDXF is
       able to tokenize any valuable data and provides data traceability and
       cross-system data processing.
     </div>
     <div class="btn_home">
-      <span class="hover6" @click="$router.push({ path: '/' })"
-        >{{$t('pageNot.return_home')}}</span
-      >
+      <span class="hover6" @click="$router.push({ path: '/' })">{{
+        $t('pageNot.return_home')
+      }}</span>
     </div>
   </div>
 </template>

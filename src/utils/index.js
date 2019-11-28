@@ -37,5 +37,15 @@ export function createQRcode(params) {
 
 export function formatTime(time) {
   moment.locale('en')
-  return time ? moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a') : ''
+  return time
+    ? moment
+        .utc(time)
+        .toString()
+        .slice(0, -5)
+    : ''
+}
+
+export function FormatFirstName(str) {
+  if (!str) return '*'
+  return str.slice(0, 1)
 }

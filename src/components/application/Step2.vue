@@ -12,15 +12,24 @@
             type="text"
             placeholder="Please Enter Application ONT ID"
             disabled
+            class="no_border_bottom"
           />
         </div>
-        <div class="form_menu_item">
-          <div class="label_name">{{ $t('application.details.wif') }}</div>
-          <div class="app_wif_wrap" v-if="wifShow">
+        <div class="form_menu_item wif_tips_area">
+          <div class="label_name">
+            {{ $t('application.details.wif') }}
+            <div class="wif_tips">
+              <span class="tips_icon"></span>
+              <div class="tips_content">
+                {{ $t('application.details.wifTips') }}
+              </div>
+            </div>
+          </div>
+          <div class="app_wif_wrap no_border_bottom" v-if="wifShow">
             {{ appNews.wif }}
             <span class="close" @click="wifShow = false"></span>
           </div>
-          <div class="app_wif_wrap" v-else>
+          <div class="app_wif_wrap no_border_bottom" v-else>
             {{ appNews.wif | closeText }}
             <span class="open" @click="wifShow = true"></span>
           </div>
@@ -32,6 +41,7 @@
             type="text"
             placeholder="Please Enter domain"
             disabled
+            class="no_border_bottom"
           />
         </div>
       </div>
@@ -275,6 +285,48 @@ export default {
       }
     }
   }
+  .form_menu_item.wif_tips_area {
+    .label_name {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .wif_tips {
+        margin-left: 10px;
+        position: relative;
+        cursor: pointer;
+        span.tips_icon {
+          display: block;
+          width: 16px;
+          height: 16px;
+          background: url(../../assets/images/wifIcon.svg) no-repeat center;
+          background-size: contain;
+          transition: all 0.6s;
+        }
+        .tips_content {
+          position: absolute;
+          left: -1500%;
+          top: -650%;
+          padding: 10px 20px;
+          width: 510px;
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.3);
+          line-height: 20px;
+          background: rgba(250, 250, 250, 1);
+          box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(242, 242, 242, 1);
+          display: none;
+        }
+        &:hover {
+          span.tips_icon {
+            background: url(../../assets/images/wifIcon_h.svg) no-repeat center;
+          }
+          .tips_content {
+            display: block;
+          }
+        }
+      }
+    }
+  }
   textarea {
     display: block;
     width: 100%;
@@ -323,7 +375,7 @@ export default {
   }
 }
 .table_body {
-  width: 600px;
+  width: 460px;
 }
 .next_btn {
   border: none;
@@ -343,6 +395,15 @@ export default {
   font-size: @14px;
   &:hover {
     opacity: 0.8;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .form_menu_item.wif_tips_area {
+    .wif_tips {
+      .tips_content {
+        left: -900% !important;
+      }
+    }
   }
 }
 </style>

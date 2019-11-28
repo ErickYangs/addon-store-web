@@ -23,35 +23,20 @@
             <input
               v-model="appNews.addonName"
               type="text"
-              placeholder="Please Input Add-on Name"
+              placeholder="Please enter Add-on name"
             />
           </div>
-          <div class="form_menu_item">
+          <div class="form_menu_item create_none_border">
             <div class="label_name">
               {{ $t('plugin.addonDetail.addCreateTime') }}
             </div>
             <input v-model="appNews.createTime" type="text" disabled />
           </div>
-          <!-- <div class="form_menu_item">
-            <div class="label_name">Add-on Wif</div>
-            <div class="app_wif_wrap" v-if="wifShow">
-              {{ appNews.wif }}
-              <span class="close" @click="wifShow = false"></span>
-            </div>
-            <div class="app_wif_wrap" v-else>
-              {{ appNews.wif | closeText }}
-              <span class="open" @click="wifShow = true"></span>
-            </div>
-          </div>
-          <div class="form_menu_item">
-            <div class="label_name">Add-on Domain</div>
-            <input v-model="appNews.domain" type="text" disabled />
-          </div>-->
           <div class="form_menu_item">
             <div class="label_name">{{ $t('plugin.addonDetail.addDesc') }}</div>
             <textarea
               v-model="appNews.description"
-              placeholder="Please Input Add-on Description"
+              placeholder="Please enter Add-on description"
             ></textarea>
           </div>
         </div>
@@ -65,7 +50,7 @@
           }}</span>
         </div>
       </div>
-      <div class="json_area"></div>
+      <!-- <div class="json_area"></div> -->
     </div>
   </div>
 </template>
@@ -84,8 +69,8 @@ export default {
         addonName: '',
         description: '',
         ontid: '',
-        wif: 'ALQAmoUQwfupnDqkXQ1EEdGhhFkUNkS1uy',
-        domain: 'ontology.com',
+        wif: '',
+        domain: '',
         createTime: ''
       },
       appId: '',
@@ -117,7 +102,7 @@ export default {
     },
     async updateAddon() {
       if (!this.appNews.addonName) {
-        this.$message.error('Please Input Add-on Name!')
+        this.$message.error('Please Enter Add-on Name!')
         return false
       }
       let params = {
@@ -176,14 +161,14 @@ export default {
   }
   .main_message_wrap {
     width: 100%;
-    padding: 0 40px 26px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .main_message_left {
       margin-top: 32px;
       width: 300px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .main_sub_title {
         font-weight: 900;
         font-size: 38px;
@@ -233,7 +218,7 @@ export default {
 }
 .plugin_content {
   width: 100%;
-  padding: 20px 60px 20px 40px;
+  padding: 40px 60px 20px 40px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -296,6 +281,11 @@ export default {
             // padding-left: 4px;
             font-weight: 400;
           }
+        }
+      }
+      .create_none_border {
+        input {
+          border-bottom: none;
         }
       }
     }
