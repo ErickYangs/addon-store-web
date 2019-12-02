@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AccountLay from '../views/Account.vue'
+import TestLay from '../views/Test'
 
 import * as Utils from '@/utils'
 import * as Storage from '@/utils/auth'
@@ -114,7 +115,19 @@ const routes = [
   {
     path: '*',
     redirect: '/404'
-  }
+  },
+  {
+    path: '/test',
+    name: 'TestLay',
+    component: TestLay,
+    children: [
+      {
+        path: '/form',
+        component: () => import('@/components/test/Form'),
+        name: 'TestForm'
+      }
+    ]
+  },
 ]
 
 const router = new VueRouter({
@@ -126,52 +139,52 @@ const router = new VueRouter({
 // Route guard judges token
 router.beforeEach(async (to, from, next) => {
   NProgress.start()
-  if (to.name === 'Login' || to.name === 'Register' || to.name === 'Error404') {
-    next()
-    NProgress.done()
-    return
-  }
-  let token = Storage.getToken()
-  if (!token) {
-    let msg = 'Please log in again!'
-    message.error(msg)
-    next({ name: 'Login' })
-    NProgress.done()
-    return
-  }
+  // if (to.name === 'Login' || to.name === 'Register' || to.name === 'Error404') {
+  //   next()
+  //   NProgress.done()
+  //   return
+  // }
+  // let token = Storage.getToken()
+  // if (!token) {
+  //   let msg = 'Please log in again!'
+  //   message.error(msg)
+  //   next({ name: 'Login' })
+  //   NProgress.done()
+  //   return
+  // }
   // --------------------------------
-  // next()
+  next()
 
-  try {
-    let res = await CheckToken({ token })
-    let errorCode = res.error
-    if (errorCode != 0) {
-      let msg = ''
-      switch (errorCode) {
-        case 62002:
-          msg = 'Authentication failed, please log in again!'
-          break
-        case 62003:
-          msg = 'Session expired, please log in again!'
-          break
-        default:
-          msg = 'Please log in again!'
-          break
-      }
-      message.error(msg)
-      Storage.clear()
-      next({ name: 'Login' })
-      NProgress.done()
-      return false
-    }
-    Storage.setToken(res.result.token)
-    next()
-  } catch (error) {
-    Storage.removeToken()
-    next({ name: 'Login' })
-    NProgress.done()
-    throw error
-  }
+  // try {
+  //   let res = await CheckToken({ token })
+  //   let errorCode = res.error
+  //   if (errorCode != 0) {
+  //     let msg = ''
+  //     switch (errorCode) {
+  //       case 62002:
+  //         msg = 'Authentication failed, please log in again!'
+  //         break
+  //       case 62003:
+  //         msg = 'Session expired, please log in again!'
+  //         break
+  //       default:
+  //         msg = 'Please log in again!'
+  //         break
+  //     }
+  //     message.error(msg)
+  //     Storage.clear()
+  //     next({ name: 'Login' })
+  //     NProgress.done()
+  //     return false
+  //   }
+  //   Storage.setToken(res.result.token)
+  //   next()
+  // } catch (error) {
+  //   Storage.removeToken()
+  //   next({ name: 'Login' })
+  //   NProgress.done()
+  //   throw error
+  // }
 })
 router.afterEach(() => {
   // finish progress bar
