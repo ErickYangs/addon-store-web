@@ -1,65 +1,189 @@
 <template>
-  <a-form :form="form" :layout="formLayout">
-    <a-form-item
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-      label="Name"
-    >
-      <a-input
-        disabled
-        v-decorator="[
-          'username',
-          { rules: [{ required: true, message: 'Please input your name' }] }
-        ]"
-        placeholder="Please input your name"
-      />
-    </a-form-item>
-    <a-form-item
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-      label="Nickname"
-    >
-      <a-input
-        v-decorator="[
-          'nickname',
-          {
-            rules: [
-              { required: true, message: 'Please input your nickname' },
+  <div class="formLayout">
+    <a-form :form="form" :layout="formLayout">
+      <a-form-item
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+        label="Name"
+      >
+        <a-input
+          disabled
+          v-decorator="[
+            'username',
+            { rules: [{ required: true, message: 'Please input your name' }] }
+          ]"
+          placeholder="Please input your name"
+        />
+      </a-form-item>
+
+      <a-form-item
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+        label="Nickname"
+      >
+        <a-input
+          v-decorator="[
+            'nickname',
+            {
+              rules: [{ required: true, message: 'Please input your nickname' }]
+            }
+          ]"
+          placeholder="Please input your nickname"
+        />
+      </a-form-item>
+
+      <div class="test_label">
+        Actions
+        <a-button @click="addConfig" style="margin-left: 20px;"
+          >Add Config</a-button
+        >
+      </div>
+      <a-row v-for="(item, index) in configTemp.actions" :key="index">
+        <!-- action -->
+        <a-form-item
+          label="Action"
+          :label-col="formTailLayout.labelCol"
+          :wrapper-col="formTailLayout.wrapperCol"
+        >
+          <a-input
+            placeholder="action"
+            v-decorator="[
+              `actions.${index}.action`,
               {
-                pattern: /^[a-z]+$/,
-                message: 'The input is not valid E-mail!'
+                initialValue: item.action,
+                rules: [{ required: true, message: 'Please input your action' }]
               }
-            ]
-          }
-        ]"
-        placeholder="Please input your nickname"
-      />
-    </a-form-item>
-    <a-form-item
-      :label-col="formTailLayout.labelCol"
-      :wrapper-col="formTailLayout.wrapperCol"
-    >
-    <div class="test_label">aa</div>
-      <a-textarea
-        v-decorator="['textareaText']"
-        placeholder="Basic usage"
-        :rows="4"
-      />
-    </a-form-item>
-    <a-form-item
-      :label-col="formTailLayout.labelCol"
-      :wrapper-col="formTailLayout.wrapperCol"
-    >
-      <a-button type="primary" @click="check">
-        Check
-      </a-button>
-    </a-form-item>
-  </a-form>
+            ]"
+          ></a-input>
+        </a-form-item>
+        <!-- callbackUrl -->
+        <a-form-item
+          label="callbackUrl"
+          :label-col="formTailLayout.labelCol"
+          :wrapper-col="formTailLayout.wrapperCol"
+        >
+          <a-input
+            v-decorator="[
+              `actions.${index}.callbackUrl`,
+              {
+                initialValue: item.callbackUrl,
+                rules: [
+                  { required: true, message: 'Please input your callbackUrl' }
+                ]
+              }
+            ]"
+            placeholder="callbackUrl"
+          ></a-input>
+        </a-form-item>
+        <!-- dataUrl -->
+        <a-form-item
+          label="dataUrl"
+          :label-col="formTailLayout.labelCol"
+          :wrapper-col="formTailLayout.wrapperCol"
+        >
+          <a-input
+            v-decorator="[
+              `actions.${index}.dataUrl`,
+              {
+                initialValue: item.dataUrl,
+                rules: [
+                  { required: true, message: 'Please input your dataUrl' }
+                ]
+              }
+            ]"
+            placeholder="dataUrl"
+          ></a-input>
+        </a-form-item>
+        <!-- Type -->
+        <a-form-item
+          label="Type"
+          :label-col="formTailLayout.labelCol"
+          :wrapper-col="formTailLayout.wrapperCol"
+        >
+          <a-select
+            placeholder="Please select type"
+            v-decorator="[
+              `actions.${index}.type`,
+              {
+                initialValue: item.type,
+                rules: [{ required: true, message: 'Please input your type' }]
+              }
+            ]"
+          >
+            <a-select-option value="ontid">ONT ID</a-select-option>
+            <a-select-option value="address">Address</a-select-option>
+          </a-select>
+        </a-form-item>
+        <!-- Network -->
+        <a-form-item
+          label="Network"
+          :label-col="formTailLayout.labelCol"
+          :wrapper-col="formTailLayout.wrapperCol"
+        >
+          <a-radio-group
+            v-decorator="[
+              `actions.${index}.mainNet`,
+              {
+                initialValue: item.mainNet,
+                rules: [
+                  { required: true, message: 'Please input your Network' }
+                ]
+              }
+            ]"
+          >
+            <a-radio :value="true">mainNet</a-radio>
+            <a-radio :value="false">testNet</a-radio>
+          </a-radio-group>
+        </a-form-item>
+        <!-- onchainRec -->
+        <a-form-item
+          label="onchainRec"
+          :label-col="formTailLayout.labelCol"
+          :wrapper-col="formTailLayout.wrapperCol"
+        >
+          <a-radio-group
+            v-decorator="[
+              `actions.${index}.onchainRec`,
+              {
+                initialValue: item.onchainRec,
+                rules: [
+                  { required: true, message: 'Please input your onchainRec' }
+                ]
+              }
+            ]"
+          >
+            <a-radio :value="true">True</a-radio>
+            <a-radio :value="false">False</a-radio>
+          </a-radio-group>
+        </a-form-item>
+        <a-button
+          v-if="configTemp.actions.length > 1"
+          type="danger"
+          @click="deleteItem(index)"
+          >Delete</a-button
+        >
+      </a-row>
+      <a-form-item
+        :label-col="formTailLayout.labelCol"
+        :wrapper-col="formTailLayout.wrapperCol"
+      >
+        <a-button type="primary" @click="check">
+          Check
+        </a-button>
+      </a-form-item>
+    </a-form>
+  </div>
 </template>
 
 <script>
-const formItemLayout = {}
-const formTailLayout = {}
+const formItemLayout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 14 }
+}
+const formTailLayout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 14 }
+}
 export default {
   data() {
     return {
@@ -67,7 +191,21 @@ export default {
       formItemLayout,
       formTailLayout,
       form: this.$form.createForm(this, { name: 'dynamic_rule' }),
-      formLayout: 'vertical'
+      formLayout: 'horizontal',
+      configTemp: {
+        payerAddress: '',
+        payerPrivateKey: '',
+        actions: [
+          {
+            action: '',
+            dataUrl: '',
+            callbackUrl: '',
+            type: 'ontid',
+            onchainRec: true,
+            mainNet: false
+          }
+        ]
+      }
     }
   },
   methods: {
@@ -79,11 +217,18 @@ export default {
         }
       })
     },
-    handleChange(e) {
-      this.checkNick = e.target.checked
-      this.$nextTick(() => {
-        this.form.validateFields(['nickname'], { force: true })
+    addConfig() {
+      this.configTemp.actions.push({
+        action: '',
+        dataUrl: '',
+        callbackUrl: '',
+        type: 'ontid',
+        onchainRec: true,
+        mainNet: false
       })
+    },
+    deleteItem(index) {
+      this.configTemp.actions.splice(index, 1)
     }
   },
   mounted() {
@@ -95,6 +240,16 @@ export default {
 </script>
 
 <style lang="less">
+.test_label {
+  margin-bottom: 20px;
+}
+.formLayout {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 20px;
+}
 .ant-form {
   .ant-form-item {
     .ant-form-item-label {

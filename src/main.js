@@ -32,7 +32,9 @@ import {
   Steps,
   Table,
   Modal,
-  Form
+  Form,
+  Select,
+  Radio
 } from 'ant-design-vue'
 Vue.prototype.$message = message
 Vue.prototype.$info = Modal.info
@@ -58,6 +60,8 @@ Vue.use(Row)
 Vue.use(Steps)
 Vue.use(Table)
 Vue.use(Form)
+Vue.use(Select)
+Vue.use(Radio)
 
 import { Table as ElTable, TableColumn as ElTableColumn } from 'element-ui'
 Vue.use(ElTable)
