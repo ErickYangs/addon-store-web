@@ -98,7 +98,7 @@
         <a-form-item
           label="Type"
           :label-col="formTailLayout.labelCol"
-          :wrapper-col="formTailLayout.wrapperCol"
+          :wrapper-col="{ span: 6 }"
         >
           <a-select
             placeholder="Please select type"
@@ -253,7 +253,7 @@ export default {
 .ant-form {
   .ant-form-item {
     .ant-form-item-label {
-      line-height: 30px;
+      line-height: 40px;
       label {
         font-size: 14px;
         font-weight: 400;
